@@ -1,4 +1,5 @@
 import { error, json } from '@sveltejs/kit';
+import { stegaClean } from '@sanity/sveltekit';
 import { serverClient } from '$lib/sanity/client.server';
 import { siteSettingsQuery, type SiteSettings } from '$lib/sanity';
 import { connectDB } from '$lib/server/db';
@@ -63,7 +64,9 @@ export const POST: RequestHandler = async ({ request }) => {
   });
 
   // ── Settings gate + pickup-date validation ────────────────────────
-  const settings = await serverClient.fetch<SiteSettings | null>(siteSettingsQuery);
+  const settings = stegaClean(
+    await serverClient.fetch<SiteSettings | null>(siteSettingsQuery)
+  ) as SiteSettings | null;
   if (settings && settings.orderingEnabled === false) {
     throw error(503, 'Online ordering is currently paused. Please check back soon.');
   }
@@ -76,10 +79,12 @@ export const POST: RequestHandler = async ({ request }) => {
 
   // ── Recompute every price server-side from Sanity ─────────────────
   const ids = [...new Set(requested.map((r) => r.productId))];
-  const products = await serverClient.fetch<CatalogProduct[]>(
-    `*[_type == "product" && _id in $ids]{ _id, name, "slug": slug.current, unit, price, inStock }`,
-    { ids }
-  );
+  const products = stegaClean(
+    await serverClient.fetch<CatalogProduct[]>(
+      `*[_type == "product" && _id in $ids]{ _id, name, "slug": slug.current, unit, price, inStock }`,
+      { ids }
+    )
+  ) as CatalogProduct[];
   const byId = new Map(products.map((p) => [p._id, p]));
 
   let subtotalCents = 0;

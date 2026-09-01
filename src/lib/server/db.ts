@@ -28,8 +28,10 @@ export async function connectDB(): Promise<typeof mongoose> {
       bufferCommands: false,
       maxPoolSize: 10,
       minPoolSize: 2, // keep connections warm between invocations
-      connectTimeoutMS: 5000,
-      serverSelectionTimeoutMS: 5000
+      // Generous enough for a cold mongodb+srv resolution + TLS handshake
+      // (DNS SRV lookup can be slow on the first connect from a new network).
+      connectTimeoutMS: 15000,
+      serverSelectionTimeoutMS: 15000
     } as mongoose.ConnectOptions;
 
     cached.promise = mongoose
