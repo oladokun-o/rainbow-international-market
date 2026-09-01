@@ -4,13 +4,25 @@
   import type { Snippet } from 'svelte';
   import Header from '$lib/components/ui/Header.svelte';
   import Footer from '$lib/components/ui/Footer.svelte';
-  import { PRIMARY_LOCATION } from '$lib/constants/site';
+  import { PRIMARY_LOCATION, MARKETING_NAV } from '$lib/constants/site';
+  import { cart } from '$lib/stores/cart.svelte';
 
   const { children }: { children: Snippet } = $props();
 </script>
 
 <div class="flex min-h-dvh flex-col bg-cream">
-  <Header location={PRIMARY_LOCATION.name} />
+  <Header location={PRIMARY_LOCATION.name} cartHref="/cart" cartCount={cart.count}>
+    {#snippet nav()}
+      {#each MARKETING_NAV as link (link.href)}
+        <a
+          href={link.href}
+          class="type-caption font-semibold text-deep transition-colors hover:text-green"
+        >
+          {link.label}
+        </a>
+      {/each}
+    {/snippet}
+  </Header>
   {@render children()}
   <Footer />
 </div>
