@@ -3,4 +3,5 @@
 // needed (hooks / *.server.ts), never through here.
 export { client, projectId, dataset, apiVersion } from './client';
 export { urlFor } from './image';
+export { blocksToPlainText, firstLine } from './portableText';
 export * from './queries';

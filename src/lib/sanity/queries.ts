@@ -42,6 +42,8 @@ export const productsQuery = groq`*[_type == "product"] | order(sortOrder asc, n
 
 export const productBySlugQuery = groq`*[_type == "product" && slug.current == $slug][0]{${productProjection}}`;
 
+export const featuredProductsQuery = groq`*[_type == "product" && featured == true] | order(sortOrder asc, name asc){${productProjection}}`;
+
 export const lowStockProductsQuery = groq`*[_type == "product" && defined(stockQty) && stockQty <= lowStockThreshold] | order(stockQty asc){
   _id, name, "slug": slug.current, stockQty, lowStockThreshold, unit
 }`;
