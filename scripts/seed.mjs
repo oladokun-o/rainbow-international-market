@@ -7,20 +7,22 @@
 //
 // Run:  npm run seed        (which is `node --env-file=.env scripts/seed.mjs`)
 //
-// Requires a write-capable token in `.env` as SANITY_WRITE_TOKEN (Editor role).
-// The read token used by the app cannot write. All writes use `createOrReplace`
-// with deterministic ids, so the script is idempotent — safe to re-run.
+// Needs a write-capable token. Prefers SANITY_WRITE_TOKEN; falls back to
+// SANITY_API_READ_TOKEN (fine when that token happens to carry write access).
+// All writes use `createOrReplace` with deterministic ids, so the script is
+// idempotent — safe to re-run.
 
 import { createClient } from '@sanity/client';
 
 const projectId = process.env.PUBLIC_SANITY_PROJECT_ID;
 const dataset = process.env.PUBLIC_SANITY_DATASET;
-const token = process.env.SANITY_WRITE_TOKEN;
+const token = process.env.SANITY_WRITE_TOKEN || process.env.SANITY_API_READ_TOKEN;
 
 if (!token) {
   console.error(
-    '\n✗ Set SANITY_WRITE_TOKEN (Editor role) in .env — the read token won\'t work for writes.\n' +
-      '  sanity.io/manage → API → Tokens → Add token → Editor, then add it to .env as SANITY_WRITE_TOKEN.\n'
+    '\n✗ No Sanity token found. Set SANITY_WRITE_TOKEN (Editor role) in .env,\n' +
+      '  or SANITY_API_READ_TOKEN if that token has write access.\n' +
+      '  sanity.io/manage → API → Tokens.\n'
   );
   process.exit(1);
 }
