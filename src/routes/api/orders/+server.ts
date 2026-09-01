@@ -140,7 +140,11 @@ export const POST: RequestHandler = async ({ request }) => {
   if (!created) throw error(500, 'Could not create your order. Please try again.');
 
   try {
-    await notifyOrder(created.toObject(), { type: 'created' });
+    const { customerNotified } = await notifyOrder(created.toObject(), { type: 'created' });
+    if (customerNotified) {
+      created.notified.email = true;
+      await created.save();
+    }
   } catch (e) {
     console.error('[orders] notifyOrder failed', e);
   }
