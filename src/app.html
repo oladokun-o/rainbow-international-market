@@ -7,6 +7,12 @@
 
     <!-- Favicon is linked from src/routes/+layout.svelte (hashed asset import).
          A real brand favicon set drops in here once client assets arrive. -->
+    <link
+      rel="preload"
+      as="image"
+      href="%sveltekit.assets%/brand/logo-horizontal-green.svg"
+      fetchpriority="high"
+    />
 
     <!--
       SEO / Open Graph / Twitter meta will be rendered per-page by a <Seo>

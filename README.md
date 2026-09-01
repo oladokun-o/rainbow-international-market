@@ -22,16 +22,15 @@ at `/studio`) and processes orders in a custom `/admin` dashboard.
 
 ## Getting started
 
-The SvelteKit app lives in [`app/`](./app). All commands run from `app/`:
+The SvelteKit app is at the repository root.
 
 ```bash
-cd app
 cp .env.example .env   # then fill in real values
 npm install
 npm run dev
 ```
 
-## Commands (run from `app/`)
+## Commands
 
 | Command | What it does |
 |---|---|
@@ -42,7 +41,7 @@ npm run dev
 
 ## Environment
 
-`.env` lives **inside `app/`** (colocated with the SvelteKit app — `vite.config.ts`
-does not set `envDir`). See [`app/.env.example`](./app/.env.example) for every
-variable this project uses. Secrets are never committed; the team pastes real
-values into `.env` locally and into the Vercel project settings for deploys.
+`.env` lives at the repository root (`vite.config.ts` does not set `envDir`). See
+[`.env.example`](./.env.example) for every variable this project uses. Secrets are
+never committed; the team pastes real values into `.env` locally and into the Vercel
+project settings for deploys.

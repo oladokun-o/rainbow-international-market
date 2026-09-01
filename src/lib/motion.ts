@@ -2,8 +2,7 @@ import type { TransitionConfig } from 'svelte/transition';
 import type { Action } from 'svelte/action';
 
 /**
- * Dropdown/menu-panel entrance, per the Motion Library's
- * dropdown-location-switcher spec: drops 6px and scales from 0.98 to 1.
+ * Dropdown/menu-panel entrance: drops 6px and scales from 0.98 to 1.
  */
 export function dropdownMenu(node: Element, params: { duration?: number } = {}): TransitionConfig {
   const duration = params.duration ?? 150;
@@ -17,8 +16,8 @@ export function dropdownMenu(node: Element, params: { duration?: number } = {}):
 }
 
 /**
- * Toast rise-in / drop-out, per the Motion Library's toasts-order-status
- * spec: rises 20px with a 0.98 scale on the way in, leaves 8px down.
+ * Toast rise-in / drop-out: rises 20px with a 0.98 scale on the way in,
+ * leaves 8px down.
  */
 export function toastIn(node: Element, params: { duration?: number } = {}): TransitionConfig {
   const duration = params.duration ?? 300;
@@ -37,8 +36,8 @@ export function toastOut(node: Element, params: { duration?: number } = {}): Tra
 }
 
 /**
- * Cascade reveal, per the Motion Library's cascade-reveal spec: "scroll-
- * triggered, staggered" — not a fire-on-mount animation. Adds `.in-view` the
+ * Cascade reveal — a scroll-triggered, staggered reveal, not a fire-on-mount
+ * animation. Adds `.in-view` the
  * first time the element crosses into the viewport (one-time, then
  * unobserves), which is what actually plays the CSS transition defined by
  * `.reveal`/`.reveal-delay-*` in app.css. Use on any element carrying those
@@ -98,8 +97,7 @@ export function parallax(node: HTMLElement, factor: number) {
 }
 
 /**
- * Edge-panel slide, per the Motion Library's edge-panel-cart-drawer spec:
- * panel translateX 100% to 0 (from the given `side`).
+ * Edge-panel slide: panel translateX 100% to 0 (from the given `side`).
  */
 export function drawerSlide(
   node: Element,
