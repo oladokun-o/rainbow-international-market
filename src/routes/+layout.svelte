@@ -3,15 +3,16 @@
   // Self-hosted variable font for body/UI text. The display font is currently
   // the same stack (placeholder) pending the client's brand typeface.
   import '@fontsource-variable/inter';
-  import type { Snippet } from 'svelte';
   import { onNavigate } from '$app/navigation';
+  import { PreviewMode, QueryLoader, VisualEditing } from '@sanity/sveltekit';
+  import { client } from '$lib/sanity/client';
   import favicon from '$lib/assets/favicon.svg';
   import Toast from '$lib/components/ui/Toast.svelte';
+  import type { LayoutProps } from './$types';
 
-  let { children }: { children: Snippet } = $props();
-
-  // TODO(phase 3): wrap {@render children()} in the Sanity preview providers
-  // (<PreviewMode><VisualEditing><QueryLoader>).
+  const { children, data }: LayoutProps = $props();
+  // svelte-ignore state_referenced_locally
+  const { previewEnabled } = data;
 
   // App-like page transitions via the View Transitions API. Progressive
   // enhancement — a no-op in browsers that don't support it, and skipped
@@ -34,6 +35,12 @@
   <link rel="icon" href={favicon} />
 </svelte:head>
 
-{@render children()}
+<PreviewMode enabled={previewEnabled}>
+  <VisualEditing enabled={previewEnabled}>
+    <QueryLoader enabled={previewEnabled} {client}>
+      {@render children()}
+    </QueryLoader>
+  </VisualEditing>
+</PreviewMode>
 
 <Toast />

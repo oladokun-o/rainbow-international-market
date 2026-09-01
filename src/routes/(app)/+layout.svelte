@@ -1,0 +1,16 @@
+<script lang="ts">
+  // Storefront shell — every marketing/shop route gets the Header + Footer.
+  // The Studio (/studio) and other top-level routes stay outside this group.
+  import type { Snippet } from 'svelte';
+  import Header from '$lib/components/ui/Header.svelte';
+  import Footer from '$lib/components/ui/Footer.svelte';
+  import { PRIMARY_LOCATION } from '$lib/constants/site';
+
+  const { children }: { children: Snippet } = $props();
+</script>
+
+<div class="flex min-h-dvh flex-col bg-cream">
+  <Header location={PRIMARY_LOCATION.name} />
+  {@render children()}
+  <Footer />
+</div>
