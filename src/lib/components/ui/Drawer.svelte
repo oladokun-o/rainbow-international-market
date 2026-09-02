@@ -50,7 +50,7 @@
           type="button"
           onclick={onclose}
           aria-label="Close"
-          class="rounded-full px-3 py-1 text-deep/60 hover:bg-deep/10 hover:text-deep"
+          class="rounded-control px-3 py-1 text-deep/60 hover:bg-deep/10 hover:text-deep"
         >
           ✕
         </button>

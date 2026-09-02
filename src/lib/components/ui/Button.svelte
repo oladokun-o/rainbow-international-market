@@ -41,8 +41,8 @@
   }: Props = $props();
 
   const sizeMap: Record<Size, string> = {
-    lg: 'h-12 px-7 text-sm font-semibold rounded-full',
-    sm: 'h-9 px-5 text-sm font-semibold rounded-full'
+    lg: 'h-12 px-7 text-sm font-semibold rounded-control',
+    sm: 'h-9 px-5 text-sm font-semibold rounded-control'
   };
 
   const styleMap: Record<Variant, string> = {

@@ -97,7 +97,7 @@
     ></div>
     <div
       class={cn(
-        'relative flex max-h-[90dvh] w-full flex-col gap-3 rounded-t-3xl bg-cream p-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] shadow-xl sm:max-h-[85vh] sm:rounded-2xl sm:p-4 sm:pb-4',
+        'relative flex max-h-[90dvh] w-full flex-col gap-3 rounded-t-surface bg-cream p-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] shadow-xl sm:max-h-[85vh] sm:rounded-surface sm:p-4 sm:pb-4',
         widthMap[size]
       )}
       style="transform: translateY({dragY}px); transition: {dragging
@@ -124,12 +124,12 @@
           type="button"
           onclick={onclose}
           aria-label="Close"
-          class="rounded-full px-3 py-1 text-deep/60 hover:bg-deep/10 hover:text-deep"
+          class="rounded-control px-3 py-1 text-deep/60 hover:bg-deep/10 hover:text-deep"
         >
           ✕
         </button>
       </div>
-      <div class="min-h-0 overflow-auto rounded-xl bg-white/60">
+      <div class="min-h-0 overflow-auto rounded-surface bg-white/60">
         {@render children()}
       </div>
     </div>

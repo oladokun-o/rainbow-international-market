@@ -55,7 +55,7 @@
       </div>
     {/if}
 
-    <div class="mt-8 rounded-2xl border-2 border-deep/10 bg-white/50 p-6">
+    <div class="mt-8 rounded-surface border-2 border-deep/10 bg-white/50 p-6">
       <dl class="grid grid-cols-[auto_1fr] gap-x-4 gap-y-1 type-caption">
         <dt class="text-deep/50">Pickup date</dt>
         <dd class="font-semibold text-deep">{formatPickupDateLabel(data.order.pickupDate)}</dd>

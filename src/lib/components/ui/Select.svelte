@@ -175,7 +175,7 @@
 
   const triggerClass = $derived(
     cn(
-      'flex w-full items-center justify-between gap-2 rounded-2xl border-2 border-deep/15 bg-white/70',
+      'flex w-full items-center justify-between gap-2 rounded-surface border-2 border-deep/15 bg-white/70',
       'px-4 py-3 text-left font-body text-[15px] text-deep transition-colors',
       'focus:outline-none focus:border-deep disabled:cursor-not-allowed disabled:opacity-60',
       open && 'border-deep',
@@ -218,7 +218,7 @@
       tabindex="-1"
       style={listStyle}
       transition:dropdownMenu
-      class="no-scrollbar z-50 max-h-60 overflow-auto rounded-2xl border-2
+      class="no-scrollbar z-50 max-h-60 overflow-auto rounded-surface border-2
              border-deep/15 bg-cream/95 p-1.5 shadow-xl shadow-deep/10 backdrop-blur-sm"
     >
       {#each options as opt, i (opt.value)}
@@ -228,7 +228,7 @@
           role="option"
           aria-selected={value === opt.value}
           class={cn(
-            'cursor-pointer rounded-xl px-3.5 py-2.5 text-[15px] transition-colors',
+            'cursor-pointer rounded-control px-3.5 py-2.5 text-[15px] transition-colors',
             i === highlighted ? 'bg-green text-cream' : 'text-deep hover:bg-deep/5',
             value === opt.value && i !== highlighted && 'font-semibold text-green'
           )}

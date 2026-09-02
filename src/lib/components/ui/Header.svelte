@@ -101,7 +101,7 @@
         <button
           type="button"
           onclick={onLocationClick}
-          class="items-center gap-1.5 rounded-full border-2 border-deep/20 px-3 py-1.5 type-caption font-semibold text-deep transition-colors hover:border-deep flex"
+          class="items-center gap-1.5 rounded-control border-2 border-deep/20 px-3 py-1.5 type-caption font-semibold text-deep transition-colors hover:border-deep flex"
         >
           <Icon name="map-pin" class="text-green" />
           {location}{#if locationClosed}<span class="hidden sm:inline"> · Closed</span>{/if}
@@ -114,7 +114,7 @@
       {#if cartHref}
         <a
           href={cartHref}
-          class="relative flex size-9 items-center justify-center rounded-full border-2 border-deep/20 text-deep transition-colors hover:border-deep"
+          class="relative flex size-9 items-center justify-center rounded-control border-2 border-deep/20 text-deep transition-colors hover:border-deep"
           aria-label={cartCount > 0 ? `Cart, ${cartCount} item${cartCount === 1 ? '' : 's'}` : 'Cart'}
         >
           <Icon name="cart" size={16} />
@@ -139,7 +139,7 @@
   {#if nav && mobileMenuOpen}
     <div
       transition:scale={{ duration: 200, start: 0.95, opacity: 0 }}
-      class="absolute inset-x-6 top-full z-50 mt-3 rounded-3xl border-2 border-deep/10 bg-cream px-8 py-10 text-center shadow-2xl sm:hidden"
+      class="absolute inset-x-6 top-full z-50 mt-3 rounded-surface border-2 border-deep/10 bg-cream px-8 py-10 text-center shadow-2xl sm:hidden"
       style="transform-origin: top;"
     >
       <!-- svelte-ignore a11y_click_events_have_key_events, a11y_no_noninteractive_element_interactions -->

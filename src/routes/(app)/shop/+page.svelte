@@ -139,7 +139,7 @@
           type="button"
           onclick={() => (activeCategory = chip.slug)}
           class={cn(
-            'type-caption rounded-full border-2 px-4 py-2 font-semibold transition-colors',
+            'type-caption rounded-control border-2 px-4 py-2 font-semibold transition-colors',
             activeCategory === chip.slug
               ? 'border-green bg-green text-cream'
               : 'border-deep/20 text-deep hover:border-deep'
@@ -168,7 +168,7 @@
         {#each filteredProducts as product (product._id)}
           <a
             href={product.slug ? `/shop/${product.slug}` : undefined}
-            class="block rounded-2xl transition-transform hover:-translate-y-0.5 focus-visible:-translate-y-0.5"
+            class="block rounded-surface transition-transform hover:-translate-y-0.5 focus-visible:-translate-y-0.5"
           >
             <MenuItemCard
               layout="stack"

@@ -33,7 +33,7 @@
 
 <div
   class={cn(
-    'inline-flex items-center rounded-full border-2 border-deep/15 bg-white/60',
+    'inline-flex items-center rounded-control border-2 border-deep/15 bg-white/60',
     size === 'sm' ? 'gap-1 p-0.5' : 'gap-1.5 p-1',
     className
   )}

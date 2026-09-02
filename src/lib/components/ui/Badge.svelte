@@ -41,7 +41,7 @@
 
   const classes = $derived(
     cn(
-      'inline-flex items-center gap-1.5 rounded-full font-semibold uppercase tracking-wide whitespace-nowrap',
+      'inline-flex items-center gap-1.5 rounded-control font-semibold uppercase tracking-wide whitespace-nowrap',
       toneMap[tone],
       sizeMap[size],
       className

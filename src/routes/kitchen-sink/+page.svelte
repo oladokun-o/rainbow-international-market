@@ -198,7 +198,7 @@
 
 <Section tone="white">
   <h2 class="type-script text-green mb-4">Photo placeholder</h2>
-  <PhotoPlaceholder label="Hero photo" class="aspect-video w-full rounded-2xl" />
+  <PhotoPlaceholder label="Hero photo" class="aspect-video w-full rounded-surface" />
 </Section>
 
 <Section>
@@ -219,7 +219,7 @@
   <Carousel>
     {#each ['Rice', 'Beans', 'Spices', 'Oils', 'Snacks'] as label (label)}
       <div class="w-48 shrink-0">
-        <PhotoPlaceholder {label} class="aspect-square w-full rounded-2xl" />
+        <PhotoPlaceholder {label} class="aspect-square w-full rounded-surface" />
       </div>
     {/each}
   </Carousel>

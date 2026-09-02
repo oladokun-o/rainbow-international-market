@@ -103,7 +103,7 @@
       'border-none bg-transparent'
     )}
   >
-    <div class="relative aspect-4/3 w-full overflow-hidden rounded-2xl">
+    <div class="relative aspect-4/3 w-full overflow-hidden rounded-surface">
       {#if image}
         <img src={image} alt={imageAlt} class="size-full object-cover" loading="lazy" />
       {:else}

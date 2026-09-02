@@ -97,7 +97,7 @@
     aria-describedby={messageId}
     class={cn(
       'h-12 w-full bg-white/60 border-2 px-4 font-body text-[15px] text-deep',
-      rounded === 'full' ? 'rounded-full' : 'rounded-2xl',
+      'rounded-control',
       'placeholder:text-deep/40 transition-colors',
       'focus:outline-none disabled:cursor-not-allowed disabled:opacity-50',
       shownError ? 'border-green' : 'border-deep/20 focus:border-deep',

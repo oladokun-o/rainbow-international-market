@@ -28,6 +28,16 @@
   --duration-fast: 200ms;
   --duration-normal: 300ms;
   --duration-slow: 500ms;
+
+  /* ── Corner radius ──────────────────────────────────────────
+     A deliberate two-step scale keyed to element size:
+       rounded-control → 8px  · buttons, inputs, selects, chips, steppers
+       rounded-surface → 12px · cards, panels, modals, toasts, tiles, images
+     `rounded-full` stays a true circle/pill — radios, checkboxes,
+     spinners, step dots, separator dots, the cart-count badge.
+     Nothing in the design system should use raw `rounded-lg/xl/2xl/3xl`. */
+  --radius-control: 0.5rem; /* 8px */
+  --radius-surface: 0.75rem; /* 12px */
 }
 
 /* ═══════════════════════════════════════════════════════════════

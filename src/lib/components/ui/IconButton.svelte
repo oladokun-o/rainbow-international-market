@@ -53,7 +53,7 @@
 
   const classes = $derived(
     cn(
-      'grid shrink-0 place-items-center rounded-lg transition-colors duration-normal',
+      'grid shrink-0 place-items-center rounded-control transition-colors duration-normal',
       'disabled:cursor-not-allowed disabled:opacity-40',
       sizeMap[size],
       variantMap[variant],

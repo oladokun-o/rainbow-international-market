@@ -26,7 +26,7 @@
       <ul class="m-0 flex list-none flex-col gap-4 p-0">
         {#each cart.lines as line (line.id)}
           <li class="flex gap-4 border-b border-deep/10 pb-4">
-            <div class="size-20 shrink-0 overflow-hidden rounded-xl">
+            <div class="size-20 shrink-0 overflow-hidden rounded-control">
               {#if line.image}
                 <img src={line.image} alt={line.name} class="size-full object-cover" />
               {:else}
@@ -63,7 +63,7 @@
         {/each}
       </ul>
 
-      <aside class="rounded-2xl border-2 border-deep/10 bg-white/50 p-6">
+      <aside class="rounded-surface border-2 border-deep/10 bg-white/50 p-6">
         <div class="flex items-center justify-between">
           <span class="font-semibold text-deep">Subtotal</span>
           <span class="font-semibold text-deep">{formatCents(cart.subtotalCents)}</span>

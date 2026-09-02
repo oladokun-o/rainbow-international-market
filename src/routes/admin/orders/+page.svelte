@@ -38,7 +38,7 @@
   <h1 class="text-2xl font-semibold text-deep">Orders</h1>
   <a
     href="/admin/orders/export.csv{page.url.search}"
-    class="type-caption rounded-full border-2 border-deep px-4 py-2 font-semibold text-deep hover:bg-deep hover:text-cream"
+    class="type-caption rounded-control border-2 border-deep px-4 py-2 font-semibold text-deep hover:bg-deep hover:text-cream"
   >
     Export CSV
   </a>
@@ -51,7 +51,7 @@
       name="q"
       value={data.filters.q}
       placeholder="Ref, name, phone"
-      class="h-10 rounded-xl border-2 border-deep/15 bg-white/60 px-3 text-[14px] text-deep"
+      class="h-10 rounded-control border-2 border-deep/15 bg-white/60 px-3 text-[14px] text-deep"
     />
   </label>
   <label class="flex flex-col gap-1 type-caption text-deep/60">
@@ -59,7 +59,7 @@
     <select
       name="status"
       value={data.filters.status}
-      class="h-10 rounded-xl border-2 border-deep/15 bg-white/60 px-3 text-[14px] text-deep"
+      class="h-10 rounded-control border-2 border-deep/15 bg-white/60 px-3 text-[14px] text-deep"
     >
       <option value="">All</option>
       {#each data.statuses as s (s)}<option value={s}>{s}</option>{/each}
@@ -71,7 +71,7 @@
       name="from"
       type="date"
       value={data.filters.from}
-      class="h-10 rounded-xl border-2 border-deep/15 bg-white/60 px-3 text-[14px] text-deep"
+      class="h-10 rounded-control border-2 border-deep/15 bg-white/60 px-3 text-[14px] text-deep"
     />
   </label>
   <label class="flex flex-col gap-1 type-caption text-deep/60">
@@ -80,12 +80,12 @@
       name="to"
       type="date"
       value={data.filters.to}
-      class="h-10 rounded-xl border-2 border-deep/15 bg-white/60 px-3 text-[14px] text-deep"
+      class="h-10 rounded-control border-2 border-deep/15 bg-white/60 px-3 text-[14px] text-deep"
     />
   </label>
   <button
     type="submit"
-    class="h-10 rounded-full bg-green px-4 type-caption font-semibold text-cream"
+    class="h-10 rounded-control bg-green px-4 type-caption font-semibold text-cream"
   >
     Apply
   </button>
@@ -130,7 +130,7 @@
               <input type="hidden" name="orderId" value={order._id} />
               <select
                 name="status"
-                class="h-9 rounded-lg border-2 border-deep/15 bg-white/60 px-2 text-[13px] text-deep"
+                class="h-9 rounded-control border-2 border-deep/15 bg-white/60 px-2 text-[13px] text-deep"
               >
                 {#each data.statuses as s (s)}
                   <option value={s} selected={s === order.status}>{s}</option>
@@ -138,7 +138,7 @@
               </select>
               <button
                 type="submit"
-                class="h-9 rounded-lg bg-deep px-3 text-[13px] font-semibold text-cream"
+                class="h-9 rounded-control bg-deep px-3 text-[13px] font-semibold text-cream"
               >
                 Save
               </button>

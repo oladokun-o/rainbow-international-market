@@ -83,7 +83,7 @@
         <p class="type-caption mt-5 text-deep/60">{settings.announcement}</p>
       {/if}
     </div>
-    <div class="aspect-4/3 overflow-hidden rounded-2xl">
+    <div class="aspect-4/3 overflow-hidden rounded-surface">
       <PhotoPlaceholder label="Store photo" class="size-full" />
     </div>
   </div>
@@ -100,7 +100,7 @@
       {#each featured as product (product._id)}
         <a
           href={product.slug ? `/shop/${product.slug}` : undefined}
-          class="block rounded-2xl transition-transform hover:-translate-y-0.5"
+          class="block rounded-surface transition-transform hover:-translate-y-0.5"
         >
           <MenuItemCard
             layout="stack"
@@ -127,7 +127,7 @@
     {#each categoryLinks as category (category.slug)}
       <a
         href={`/shop?category=${category.slug}`}
-        class="group flex items-center justify-between rounded-2xl border-2 border-deep/10 bg-white/40 px-5 py-6 transition-colors hover:border-green"
+        class="group flex items-center justify-between rounded-surface border-2 border-deep/10 bg-white/40 px-5 py-6 transition-colors hover:border-green"
       >
         <span class="text-[16px] font-semibold text-deep">{category.label}</span>
         <span class="font-display text-green transition-transform group-hover:translate-x-1">&rarr;</span>

@@ -27,7 +27,7 @@
       collect.
     </p>
 
-    <div class="mt-8 rounded-2xl border-2 border-deep/10 bg-white/50 p-6">
+    <div class="mt-8 rounded-surface border-2 border-deep/10 bg-white/50 p-6">
       <div class="flex items-center justify-between">
         <span class="type-caption font-semibold uppercase tracking-wide text-deep/60">
           Order reference
