@@ -334,3 +334,31 @@ export const PRODUCT_CATEGORIES = [
   { label: 'Household Essentials', slug: 'household-essentials' },
   { label: 'Prepared Food', slug: 'prepared-food' }
 ] as const;
+
+/** schema.org GroceryStore structured data for the homepage. `origin` is the
+ * live request origin so URLs are host-correct on previews and production. */
+export function groceryStoreJsonLd(origin: string): Record<string, unknown> {
+  const loc = PRIMARY_LOCATION;
+  const sameAs = Object.values(SOCIAL_LINKS).filter(Boolean);
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'GroceryStore',
+    name: SITE_NAME,
+    description: SITE_DESCRIPTION,
+    url: origin,
+    ...(sameAs.length ? { sameAs } : {}),
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: loc.streetAddress,
+      addressLocality: loc.city,
+      addressRegion: loc.state,
+      ...(loc.postalCode ? { postalCode: loc.postalCode } : {}),
+      addressCountry: 'US'
+    },
+    ...(loc.phone ? { telephone: loc.phone } : {}),
+    ...(loc.lat && loc.lng
+      ? { geo: { '@type': 'GeoCoordinates', latitude: loc.lat, longitude: loc.lng } }
+      : {}),
+    areaServed: 'San Angelo, TX'
+  };
+}

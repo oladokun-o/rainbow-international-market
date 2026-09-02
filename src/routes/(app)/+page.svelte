@@ -1,5 +1,6 @@
 <script lang="ts">
   import { goto } from '$app/navigation';
+  import { page } from '$app/state';
   import { ArrowRight } from '@lucide/svelte';
   import Seo from '$lib/components/seo/Seo.svelte';
   import Section from '$lib/components/ui/Section.svelte';
@@ -15,7 +16,8 @@
     SITE_DESCRIPTION,
     PRODUCT_CATEGORIES,
     PRIMARY_LOCATION,
-    formatHoursSummary
+    formatHoursSummary,
+    groceryStoreJsonLd
   } from '$lib/constants/site';
   import type { PageData } from './$types';
 
@@ -54,7 +56,12 @@
   }
 </script>
 
-<Seo title="{SITE_NAME} — African, Caribbean & Asian groceries in San Angelo, TX" canonical="/" description={SITE_DESCRIPTION} />
+<Seo
+  title="{SITE_NAME} — African, Caribbean & Asian groceries in San Angelo, TX"
+  canonical="/"
+  description={SITE_DESCRIPTION}
+  jsonLd={groceryStoreJsonLd(page.url.origin)}
+/>
 
 {#if promo?.enabled}
   <div class="bg-orange px-6 py-2.5 text-center text-deep">

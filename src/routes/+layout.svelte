@@ -3,6 +3,8 @@
   // Self-hosted brand fonts: Outfit (display) + DM Sans (body).
   import '@fontsource-variable/outfit';
   import '@fontsource-variable/dm-sans';
+  import { onMount } from 'svelte';
+  import { dev } from '$app/environment';
   import { onNavigate } from '$app/navigation';
   import { PreviewMode, QueryLoader, VisualEditing } from '@sanity/sveltekit';
   import { client } from '$lib/sanity/client';
@@ -27,6 +29,15 @@
         await navigation.complete;
       });
     });
+  });
+
+  // Register the PWA service worker (production only — it fights Vite HMR in dev).
+  onMount(() => {
+    if (!dev && 'serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/service-worker.js').catch(() => {
+        /* offline support is best-effort */
+      });
+    }
   });
 </script>
 
