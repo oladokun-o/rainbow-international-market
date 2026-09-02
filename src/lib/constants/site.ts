@@ -1,8 +1,7 @@
 // Canonical site-wide metadata. Single source of truth for URLs, brand names,
 // social links, and contact details used by SEO and the page layout.
 
-// TODO confirm domain
-export const SITE_URL = 'https://rainbowinternationalmarket.com';
+export const SITE_URL = 'https://myrainbowmarket.com';
 export const SITE_NAME = 'Rainbow International Market';
 export const SITE_DESCRIPTION =
   'African, Caribbean, Asian & international grocery store in San Angelo, TX. ' +
@@ -28,10 +27,9 @@ export const SOCIAL_LINKS = {
 // Default social-share image (1200×630), composed from brand vectors + fonts.
 export const SITE_OG_IMAGE = '/og/og-default.png';
 
-// Company-wide, not per-location — one inbox regardless of how many
-// storefronts exist.
-// TODO confirm real address
-export const CONTACT_EMAIL = 'hello@rainbowinternationalmarket.com';
+// Public contact inbox. TODO: confirm the exact mailbox with the client
+// (using the confirmed myrainbowmarket.com domain).
+export const CONTACT_EMAIL = 'hello@myrainbowmarket.com';
 
 /** One day-group's hours — `display` for people, `open`/`close` (24h "HH:mm")
  * for `isLocationOpenNow` to actually compute against. */
