@@ -20,7 +20,7 @@
 
 <div class="mt-6 grid grid-cols-2 gap-4 sm:grid-cols-4">
   {#each statusCards as card (card.key)}
-    <div class="rounded-2xl border-2 border-deep/10 bg-white/50 p-4">
+    <div class="rounded-surface border-2 border-deep/10 bg-white/50 p-4">
       <p class="type-caption text-deep/50">{card.label}</p>
       <p class="mt-1 text-3xl font-semibold text-green">{data.byStatus[card.key]}</p>
     </div>
@@ -35,7 +35,7 @@
     <ul class="mt-3 flex list-none flex-col gap-2 p-0">
       {#each data.todaysPickups as order (order.orderRef)}
         <li
-          class="flex items-center justify-between gap-3 rounded-xl border-2 border-deep/10 bg-white/50 px-4 py-3"
+          class="flex items-center justify-between gap-3 rounded-surface border-2 border-deep/10 bg-white/50 px-4 py-3"
         >
           <div class="min-w-0">
             <a href="/admin/orders?ref={order.orderRef}" class="font-semibold text-green">

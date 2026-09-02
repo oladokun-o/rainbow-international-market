@@ -20,7 +20,7 @@
       in:toastIn
       out:toastOut
       class={cn(
-        'pointer-events-auto flex max-w-sm items-center gap-3 rounded-full border-2 px-5 py-3 text-[14px] font-semibold shadow-lg',
+        'pointer-events-auto flex max-w-sm items-center gap-3 rounded-control border-2 px-5 py-3 text-[14px] font-semibold shadow-lg',
         toneClass[item.tone]
       )}
     >

@@ -1,5 +1,6 @@
 <script lang="ts">
   import type { Snippet } from 'svelte';
+  import { X } from '@lucide/svelte';
   import { cn } from '$lib/utils';
   import { fade } from 'svelte/transition';
   import { drawerSlide } from '$lib/motion';
@@ -50,9 +51,9 @@
           type="button"
           onclick={onclose}
           aria-label="Close"
-          class="rounded-full px-3 py-1 text-deep/60 hover:bg-deep/10 hover:text-deep"
+          class="grid size-8 place-items-center rounded-control text-deep/60 hover:bg-deep/10 hover:text-deep"
         >
-          ✕
+          <X size={18} />
         </button>
       </div>
       <div class="min-h-0 flex-1 overflow-auto">

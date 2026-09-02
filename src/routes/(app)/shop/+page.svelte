@@ -1,5 +1,4 @@
 <script lang="ts">
-  import { goto } from '$app/navigation';
   import { page } from '$app/state';
   import Seo from '$lib/components/seo/Seo.svelte';
   import Section from '$lib/components/ui/Section.svelte';
@@ -12,6 +11,8 @@
   import { cn, formatCents } from '$lib/utils';
   import { urlFor, firstLine } from '$lib/sanity';
   import type { Product } from '$lib/sanity';
+  import { cart } from '$lib/stores/cart.svelte';
+  import { toastStore } from '$lib/stores/toast.svelte';
   import { SITE_NAME } from '$lib/constants/site';
   import type { PageData } from './$types';
 
@@ -77,8 +78,9 @@
     }
   }
 
-  function openProduct(p: Product) {
-    if (p.slug) goto(`/shop/${p.slug}`);
+  function addToCart(p: Product) {
+    cart.add(p, 1);
+    toastStore.push(`${p.name} added to cart`, 'success');
   }
 
   function clearFilters() {
@@ -94,7 +96,7 @@
 />
 
 {#if promo?.enabled}
-  <div class="bg-amber px-6 py-2.5 text-center text-deep">
+  <div class="bg-orange px-6 py-2.5 text-center text-deep">
     <p class="type-caption font-semibold">
       {promo.headline}{#if promo.subtext}<span class="font-normal"> — {promo.subtext}</span>{/if}
     </p>
@@ -112,7 +114,7 @@
 
   {#if orderingPaused}
     <div class="mt-6">
-      <Badge tone="amber">Online ordering is paused</Badge>
+      <Badge tone="orange">Online ordering is paused</Badge>
       <span class="type-caption ml-2 text-deep/60">You can still browse — checkout is temporarily unavailable.</span>
     </div>
   {/if}
@@ -139,7 +141,7 @@
           type="button"
           onclick={() => (activeCategory = chip.slug)}
           class={cn(
-            'type-caption rounded-full border-2 px-4 py-2 font-semibold transition-colors',
+            'type-caption rounded-control border-2 px-4 py-2 font-semibold transition-colors',
             activeCategory === chip.slug
               ? 'border-green bg-green text-cream'
               : 'border-deep/20 text-deep hover:border-deep'
@@ -168,7 +170,7 @@
         {#each filteredProducts as product (product._id)}
           <a
             href={product.slug ? `/shop/${product.slug}` : undefined}
-            class="block rounded-2xl transition-transform hover:-translate-y-0.5 focus-visible:-translate-y-0.5"
+            class="block rounded-surface transition-transform hover:-translate-y-0.5 focus-visible:-translate-y-0.5"
           >
             <MenuItemCard
               layout="stack"
@@ -179,8 +181,9 @@
               imageAlt={product.name}
               tags={product.type === 'prepared' ? ['Made to order'] : []}
               soldOut={!isAvailable(product)}
-              actionLabel="View"
-              onAdd={() => openProduct(product)}
+              disabled={orderingPaused}
+              actionLabel="Add"
+              onAdd={() => addToCart(product)}
             />
           </a>
         {/each}

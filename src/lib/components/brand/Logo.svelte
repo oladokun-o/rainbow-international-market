@@ -1,35 +1,52 @@
 <script lang="ts">
   /**
-   * The horizontal Rainbow wordmark, rendered from an SVG asset.
-   * Placeholder wordmark — replace with the real brand lockup when delivered.
+   * The Rainbow International Market logo, from the client brand pack.
+   *   variant — wordmark (default, "RAINBOW / INTERNATIONAL MARKET" lockup)
+   *           | mark (the rainbow-arc / Africa / basket icon)
+   *           | stacked (mark above the wordmark)
+   *   tone    — color (default: full-colour vector) | white | green
+   *             (white / green are flat PNG monochromes for use on a
+   *              coloured or photographic background)
    */
+  type Variant = 'wordmark' | 'mark' | 'stacked';
+  type Tone = 'color' | 'white' | 'green';
+
   interface Props {
-    /** green on cream surfaces, cream on green or deep surfaces. */
-    tone?: 'green' | 'cream';
-    /** Rendered height in px; width follows the 555:94 ratio. */
+    variant?: Variant;
+    tone?: Tone;
+    /** Rendered height in px; width follows the variant's aspect ratio. */
     height?: number;
     assetBase?: string;
     /** Wraps the mark in a labelled link. */
     href?: string;
-    /** Applied to the wrapping <a> when `href` is set, else ignored. */
     class?: string;
-    /** Applied to the <img> itself — e.g. a responsive `h-8 sm:h-10 w-auto`
-     * override, which wins visually over the `height`/`width` attributes
-     * while they still hold the layout's aspect ratio before CSS loads. */
+    /** Applied to the <img> — e.g. a responsive `h-6 sm:h-8 w-auto`. */
     imgClass?: string;
   }
 
   let {
-    tone = 'green',
-    height = 40,
+    variant = 'wordmark',
+    tone = 'color',
+    height = 32,
     assetBase = '/brand',
     href,
     class: className,
     imgClass
   }: Props = $props();
 
-  const width = $derived(Math.round((height * 555) / 94));
-  const src = $derived(`${assetBase}/logo-horizontal-${tone}.svg`);
+  // width ÷ height, from each source file's viewBox.
+  const RATIO: Record<Variant, number> = {
+    wordmark: 2048 / 736,
+    mark: 1995 / 2048,
+    stacked: 780 / 611
+  };
+
+  const width = $derived(Math.round(height * RATIO[variant]));
+  const src = $derived(
+    tone === 'color'
+      ? `${assetBase}/logo-${variant}-vector.svg`
+      : `${assetBase}/logo-${variant}-${tone}.png`
+  );
 </script>
 
 {#if href}

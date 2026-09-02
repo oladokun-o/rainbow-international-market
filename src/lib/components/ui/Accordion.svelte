@@ -45,7 +45,7 @@
   }
 </script>
 
-<div class={cn('flex flex-col rounded-2xl border-2 border-deep/10', className)}>
+<div class={cn('flex flex-col rounded-surface border-2 border-deep/10', className)}>
   {#each items as item, i (item.id)}
     {@const isOpen = open.includes(item.id)}
     <div class={i > 0 ? 'border-t-2 border-deep/10' : ''}>

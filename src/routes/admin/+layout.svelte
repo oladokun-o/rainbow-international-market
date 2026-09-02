@@ -34,7 +34,7 @@
           <a
             href={item.href}
             class={cn(
-              'flex items-center gap-2 rounded-lg px-3 py-2 type-caption font-semibold transition-colors',
+              'flex items-center gap-2 rounded-control px-3 py-2 type-caption font-semibold transition-colors',
               active(item.href) ? 'bg-green text-cream' : 'text-deep hover:bg-deep/5'
             )}
           >
@@ -46,7 +46,7 @@
           href="/studio"
           target="_blank"
           rel="noopener"
-          class="flex items-center gap-2 rounded-lg px-3 py-2 type-caption font-semibold text-deep hover:bg-deep/5"
+          class="flex items-center gap-2 rounded-control px-3 py-2 type-caption font-semibold text-deep hover:bg-deep/5"
         >
           <Icon name="edit" size={15} />
           Products (Studio)

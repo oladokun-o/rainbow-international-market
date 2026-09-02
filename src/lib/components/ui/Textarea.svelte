@@ -94,7 +94,7 @@
     aria-invalid={shownError ? 'true' : undefined}
     aria-describedby={messageId}
     class={cn(
-      'w-full rounded-2xl bg-white/60 border-2 px-4 py-3 font-body text-[15px] text-deep',
+      'w-full rounded-control bg-white/60 border-2 px-4 py-3 font-body text-[15px] text-deep',
       'placeholder:text-deep/40 transition-colors resize-y',
       'focus:outline-none disabled:cursor-not-allowed disabled:opacity-50',
       shownError ? 'border-green' : 'border-deep/20 focus:border-deep',

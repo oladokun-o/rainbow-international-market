@@ -1,12 +1,13 @@
 <script lang="ts">
   import '../app.css';
-  // Self-hosted variable font for body/UI text. The display font is currently
-  // the same stack (placeholder) pending the client's brand typeface.
-  import '@fontsource-variable/inter';
+  // Self-hosted brand fonts: Outfit (display) + DM Sans (body).
+  import '@fontsource-variable/outfit';
+  import '@fontsource-variable/dm-sans';
+  import { onMount } from 'svelte';
+  import { dev } from '$app/environment';
   import { onNavigate } from '$app/navigation';
   import { PreviewMode, QueryLoader, VisualEditing } from '@sanity/sveltekit';
   import { client } from '$lib/sanity/client';
-  import favicon from '$lib/assets/favicon.svg';
   import Toast from '$lib/components/ui/Toast.svelte';
   import type { LayoutProps } from './$types';
 
@@ -29,11 +30,16 @@
       });
     });
   });
-</script>
 
-<svelte:head>
-  <link rel="icon" href={favicon} />
-</svelte:head>
+  // Register the PWA service worker (production only — it fights Vite HMR in dev).
+  onMount(() => {
+    if (!dev && 'serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/service-worker.js').catch(() => {
+        /* offline support is best-effort */
+      });
+    }
+  });
+</script>
 
 <PreviewMode enabled={previewEnabled}>
   <VisualEditing enabled={previewEnabled}>

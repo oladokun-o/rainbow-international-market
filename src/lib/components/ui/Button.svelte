@@ -41,19 +41,19 @@
   }: Props = $props();
 
   const sizeMap: Record<Size, string> = {
-    lg: 'h-12 px-7 text-sm font-semibold rounded-full',
-    sm: 'h-9 px-5 text-sm font-semibold rounded-full'
+    lg: 'h-12 px-7 text-sm font-semibold rounded-control',
+    sm: 'h-9 px-5 text-sm font-semibold rounded-control'
   };
 
   const styleMap: Record<Variant, string> = {
-    primary: 'bg-green text-cream hover:bg-deep',
-    secondary: 'bg-transparent border-2 border-deep text-deep hover:bg-deep hover:text-cream',
-    ghost: 'bg-transparent text-deep hover:text-green',
+    primary: 'bg-orange text-white hover:brightness-95 active:brightness-90',
+    secondary: 'bg-transparent border-2 border-green text-green hover:bg-green hover:text-cream',
+    ghost: 'bg-transparent text-green hover:text-orange',
     inverse: 'bg-transparent border-2 border-cream text-cream hover:bg-cream hover:text-green'
   };
 
   const disabledMap: Record<Variant, string> = {
-    primary: '!bg-green/50 !text-cream/70',
+    primary: '!bg-orange/45 !text-white/80',
     secondary: 'opacity-40',
     ghost: 'opacity-40',
     inverse: 'opacity-40'

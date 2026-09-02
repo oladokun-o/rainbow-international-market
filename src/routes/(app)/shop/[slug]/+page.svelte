@@ -72,7 +72,7 @@
   <div class="grid gap-10 lg:grid-cols-2">
     <!-- Gallery -->
     <div>
-      <div class="aspect-4/3 overflow-hidden rounded-2xl bg-white/40">
+      <div class="aspect-4/3 overflow-hidden rounded-surface bg-white/40">
         {#if mainImage}
           <img src={mainImage} alt={product.name} class="size-full object-cover" />
         {:else}
@@ -87,7 +87,7 @@
               onclick={() => (selectedImage = i)}
               aria-label={`Show image ${i + 1}`}
               aria-current={selectedImage === i}
-              class="size-16 overflow-hidden rounded-xl border-2 transition-colors {selectedImage === i
+              class="size-16 overflow-hidden rounded-control border-2 transition-colors {selectedImage === i
                 ? 'border-green'
                 : 'border-deep/15 hover:border-deep/40'}"
             >
@@ -124,7 +124,7 @@
       {/if}
 
       {#if product.type === 'prepared' && product.leadTimeNote}
-        <p class="mt-5 rounded-xl bg-amber/15 px-4 py-3 text-[14px] font-medium text-deep">
+        <p class="mt-5 rounded-surface bg-orange/15 px-4 py-3 text-[14px] font-medium text-deep">
           {product.leadTimeNote}
         </p>
       {/if}

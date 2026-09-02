@@ -1,41 +1,44 @@
-/* Inter is self-hosted via @fontsource-variable, imported in src/routes/+layout.svelte. */
+/* Fonts (Outfit + DM Sans) are self-hosted via @fontsource-variable and
+   imported in src/routes/+layout.svelte. */
 
 @import 'tailwindcss';
 
 /* ═══════════════════════════════════════════════════════════════
-   DESIGN TOKENS  —  Rainbow International Market (PROVISIONAL)
-   Palette taken from the store flyer; swap for real brand tokens
-   when the client delivers assets.
+   DESIGN TOKENS  —  Rainbow International Market
+   Colours + logo from the client brand pack (workspace "digital assets/").
    ═══════════════════════════════════════════════════════════════ */
 
 @theme {
   /* ── Fonts ──────────────────────────────────────────────────
      Tailwind utilities: font-body · font-display
-     NOTE: --font-display is a PLACEHOLDER (same stack as body)
-     pending the client's brand typeface. */
-  --font-body: 'Inter Variable', Inter, system-ui, sans-serif;
-  --font-display: 'Inter Variable', Inter, system-ui, sans-serif;
+     Self-hosted via @fontsource-variable, imported in +layout.svelte. */
+  --font-body: 'DM Sans Variable', system-ui, sans-serif;
+  --font-display: 'Outfit Variable', 'DM Sans Variable', system-ui, sans-serif;
 
   /* ── Brand Colors ───────────────────────────────────────────
-     Tailwind utilities: bg-cream · text-deep · border-green … */
-  --color-green: #1e6b3f; /* primary brand — forest green */
-  --color-amber: #f0a020; /* accent */
-  --color-cream: #fbf7ef; /* page background */
-  --color-deep: #12351f; /* deep text */
+     From the client brand pack (digital assets/logo assets/brand.json).
+     Tailwind utilities: bg-cream · text-deep · border-green · text-orange … */
+  --color-green: #006b3c; /* primary brand */
+  --color-orange: #f15a24; /* accent / CTA */
+  --color-yellow: #fbbf17; /* secondary accent (sparingly) */
+  --color-cream: #fbf7ef; /* warm page background */
+  --color-deep: #054e32; /* deep green — body text */
 
   /* ── Animation Durations ────────────────────────────────────
      Tailwind utilities: duration-fast · duration-normal · duration-slow */
   --duration-fast: 200ms;
   --duration-normal: 300ms;
   --duration-slow: 500ms;
-}
 
-/* ═══════════════════════════════════════════════════════════════
-   FONT UTILITIES — explicit, by font name
-   ═══════════════════════════════════════════════════════════════ */
-
-@utility font-inter {
-  font-family: 'Inter Variable', Inter, system-ui, sans-serif;
+  /* ── Corner radius ──────────────────────────────────────────
+     A deliberate two-step scale keyed to element size:
+       rounded-control → 8px  · buttons, inputs, selects, chips, steppers
+       rounded-surface → 12px · cards, panels, modals, toasts, tiles, images
+     `rounded-full` stays a true circle/pill — radios, checkboxes,
+     spinners, step dots, separator dots, the cart-count badge.
+     Nothing in the design system should use raw `rounded-lg/xl/2xl/3xl`. */
+  --radius-control: 0.5rem; /* 8px */
+  --radius-surface: 0.75rem; /* 12px */
 }
 
 /* ═══════════════════════════════════════════════════════════════

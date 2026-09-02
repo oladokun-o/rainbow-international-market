@@ -45,9 +45,9 @@
   };
 
   const radiusMap: Record<Radius, string> = {
-    card: 'rounded-2xl',
-    nested: 'rounded-xl',
-    panel: 'rounded-3xl'
+    card: 'rounded-surface',
+    nested: 'rounded-surface',
+    panel: 'rounded-surface'
   };
 
   const classes = $derived(

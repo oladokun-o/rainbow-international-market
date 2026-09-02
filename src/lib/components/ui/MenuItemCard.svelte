@@ -47,6 +47,14 @@
     soldOut = false,
     class: className
   }: Props = $props();
+
+  // The card is often wrapped in a link to the product page; keep an Add
+  // click from also triggering that navigation.
+  function handleAdd(event: MouseEvent) {
+    event.preventDefault();
+    event.stopPropagation();
+    onAdd?.();
+  }
 </script>
 
 {#if layout === 'row'}
@@ -67,16 +75,16 @@
         {:else}
           <PhotoPlaceholder label="Product photo" class="size-full" />
         {/if}
+        {#if tags.length > 0}
+          <div class="absolute left-2 top-2 flex flex-wrap gap-1.5">
+            {#each tags as tag (tag)}
+              <Badge tone="green" size="sm">{tag}</Badge>
+            {/each}
+          </div>
+        {/if}
       </div>
       <div class="flex min-w-0 flex-1 flex-col justify-between p-4 sm:py-4 sm:pr-4 sm:pl-0">
         <div class="min-w-0">
-          {#if tags.length > 0}
-            <div class="mb-1 flex flex-wrap gap-1.5">
-              {#each tags as tag (tag)}
-                <Badge tone="green" size="sm">{tag}</Badge>
-              {/each}
-            </div>
-          {/if}
           <p class="truncate text-[15px] font-semibold text-deep">{name}</p>
           {#if description}
             <p class="type-caption mt-0.5 truncate text-deep/50">{description}</p>
@@ -85,7 +93,7 @@
         <div class="mt-2 flex items-center justify-between gap-3">
           <span class="text-[16px] font-display text-green">{price}</span>
           {#if onAdd}
-            <Button size="sm" disabled={disabled || soldOut} onclick={onAdd}>
+            <Button size="sm" disabled={disabled || soldOut} onclick={handleAdd}>
               {soldOut ? 'Sold out' : actionLabel}
             </Button>
           {/if}
@@ -103,11 +111,18 @@
       'border-none bg-transparent'
     )}
   >
-    <div class="relative aspect-4/3 w-full overflow-hidden rounded-2xl">
+    <div class="relative aspect-4/3 w-full overflow-hidden rounded-surface">
       {#if image}
         <img src={image} alt={imageAlt} class="size-full object-cover" loading="lazy" />
       {:else}
         <PhotoPlaceholder label="Product photo" class="size-full" />
+      {/if}
+      {#if tags.length > 0}
+        <div class="absolute left-2 top-2 flex flex-wrap gap-1.5">
+          {#each tags as tag (tag)}
+            <Badge tone="green" size="sm">{tag}</Badge>
+          {/each}
+        </div>
       {/if}
       {#if soldOut}
         <span class="animate-fade-up absolute top-2 right-2">
@@ -116,13 +131,6 @@
       {/if}
     </div>
     <div class="flex flex-col py-2">
-      {#if tags.length > 0}
-        <div class="flex flex-wrap gap-1.5">
-          {#each tags as tag (tag)}
-            <Badge tone="green" size="sm">{tag}</Badge>
-          {/each}
-        </div>
-      {/if}
       <p class="text-[14px] font-semibold text-deep">{name}</p>
       <div class="flex items-center justify-between gap-3">
         <span class="font-display text-[16px] text-green">{price}</span>

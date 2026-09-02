@@ -3,20 +3,24 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-    <meta name="theme-color" content="#1E6B3F" />
+    <meta name="theme-color" content="#006B3C" />
 
-    <!-- Favicon is linked from src/routes/+layout.svelte (hashed asset import).
-         A real brand favicon set drops in here once client assets arrive. -->
+    <link rel="icon" href="%sveltekit.assets%/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/png" sizes="32x32" href="%sveltekit.assets%/favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="%sveltekit.assets%/favicon-192.png" />
+    <link rel="apple-touch-icon" href="%sveltekit.assets%/apple-touch-icon.png" />
+    <link rel="manifest" href="%sveltekit.assets%/manifest.webmanifest" />
+
     <link
       rel="preload"
       as="image"
-      href="%sveltekit.assets%/brand/logo-horizontal-green.svg"
+      href="%sveltekit.assets%/brand/logo-wordmark-vector.svg"
       fetchpriority="high"
     />
 
     <!--
-      SEO / Open Graph / Twitter meta will be rendered per-page by a <Seo>
-      component (added in a later phase).
+      SEO / Open Graph / Twitter meta is rendered per-page by the <Seo>
+      component (src/lib/components/seo/Seo.svelte).
     -->
     %sveltekit.head%
   </head>

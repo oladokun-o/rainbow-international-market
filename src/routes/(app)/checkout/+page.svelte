@@ -190,7 +190,7 @@
             <legend class="type-caption font-semibold text-deep">Choose a pickup date</legend>
             {#each data.pickupDateOptions as date (date)}
               <label
-                class="flex cursor-pointer items-center gap-3 rounded-xl border-2 border-deep/15 bg-white/50 px-4 py-3"
+                class="flex cursor-pointer items-center gap-3 rounded-surface border-2 border-deep/15 bg-white/50 px-4 py-3"
               >
                 <input type="radio" name="pickupDate" value={date} bind:group={pickupDate} />
                 <span class="text-deep">{formatPickupDateLabel(date)}</span>
@@ -224,7 +224,7 @@
       {/if}
     </div>
 
-    <aside class="rounded-2xl border-2 border-deep/10 bg-white/50 p-6">
+    <aside class="rounded-surface border-2 border-deep/10 bg-white/50 p-6">
       <h2 class="font-semibold text-deep">Order summary</h2>
       <ul class="m-0 mt-3 flex list-none flex-col gap-1 p-0">
         {#each cart.lines as line (line.id)}

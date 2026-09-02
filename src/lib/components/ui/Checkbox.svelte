@@ -54,7 +54,7 @@
   <span
     aria-hidden="true"
     class={cn(
-      'mt-0.5 grid size-[22px] shrink-0 place-items-center rounded-md border-2 transition-colors duration-fast',
+      'mt-0.5 grid size-[22px] shrink-0 place-items-center rounded-control border-2 transition-colors duration-fast',
       checked ? 'border-green bg-green text-cream' : 'border-deep/30 bg-white/60'
     )}
   >

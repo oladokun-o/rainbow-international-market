@@ -20,7 +20,7 @@
 
 <div
   class={cn(
-    'relative flex flex-col items-center gap-2 overflow-hidden rounded-2xl border-2 border-deep/10 bg-white/40 px-6 py-12 text-center',
+    'relative flex flex-col items-center gap-2 overflow-hidden rounded-surface border-2 border-deep/10 bg-white/40 px-6 py-12 text-center',
     className
   )}
 >

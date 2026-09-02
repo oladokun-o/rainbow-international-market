@@ -1,8 +1,7 @@
 // Canonical site-wide metadata. Single source of truth for URLs, brand names,
 // social links, and contact details used by SEO and the page layout.
 
-// TODO confirm domain
-export const SITE_URL = 'https://rainbowinternationalmarket.com';
+export const SITE_URL = 'https://myrainbowmarket.com';
 export const SITE_NAME = 'Rainbow International Market';
 export const SITE_DESCRIPTION =
   'African, Caribbean, Asian & international grocery store in San Angelo, TX. ' +
@@ -25,13 +24,12 @@ export const SOCIAL_LINKS = {
   facebook: ''
 } as const;
 
-// Default social-share image (1200×630), composed from brand vectors + fonts.
-export const SITE_OG_IMAGE = '/og/og-default.png';
+// Default social-share card — the client brand banner, resized to 1200×630.
+export const SITE_OG_IMAGE = '/og/og-default.jpg';
 
-// Company-wide, not per-location — one inbox regardless of how many
-// storefronts exist.
-// TODO confirm real address
-export const CONTACT_EMAIL = 'hello@rainbowinternationalmarket.com';
+// Public contact inbox. TODO: confirm the exact mailbox with the client
+// (using the confirmed myrainbowmarket.com domain).
+export const CONTACT_EMAIL = 'hello@myrainbowmarket.com';
 
 /** One day-group's hours — `display` for people, `open`/`close` (24h "HH:mm")
  * for `isLocationOpenNow` to actually compute against. */
@@ -334,3 +332,31 @@ export const PRODUCT_CATEGORIES = [
   { label: 'Household Essentials', slug: 'household-essentials' },
   { label: 'Prepared Food', slug: 'prepared-food' }
 ] as const;
+
+/** schema.org GroceryStore structured data for the homepage. `origin` is the
+ * live request origin so URLs are host-correct on previews and production. */
+export function groceryStoreJsonLd(origin: string): Record<string, unknown> {
+  const loc = PRIMARY_LOCATION;
+  const sameAs = Object.values(SOCIAL_LINKS).filter(Boolean);
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'GroceryStore',
+    name: SITE_NAME,
+    description: SITE_DESCRIPTION,
+    url: origin,
+    ...(sameAs.length ? { sameAs } : {}),
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: loc.streetAddress,
+      addressLocality: loc.city,
+      addressRegion: loc.state,
+      ...(loc.postalCode ? { postalCode: loc.postalCode } : {}),
+      addressCountry: 'US'
+    },
+    ...(loc.phone ? { telephone: loc.phone } : {}),
+    ...(loc.lat && loc.lng
+      ? { geo: { '@type': 'GeoCoordinates', latitude: loc.lat, longitude: loc.lng } }
+      : {}),
+    areaServed: 'San Angelo, TX'
+  };
+}

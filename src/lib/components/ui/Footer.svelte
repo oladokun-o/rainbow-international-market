@@ -44,7 +44,7 @@
 <footer class={cn('px-6 pt-10 sm:px-12', className)}>
   <div class="mx-auto flex max-w-6xl flex-col gap-8 sm:flex-row sm:justify-between">
     <div>
-      <Logo tone="green" height={28} href="/" imgClass="h-6 w-auto" />
+      <Logo variant="wordmark" height={28} href="/" imgClass="h-7 w-auto" />
       <p class="font-display mt-3 text-sm uppercase tracking-wide text-green">
         African, Caribbean, Asian &amp; international groceries.
       </p>
