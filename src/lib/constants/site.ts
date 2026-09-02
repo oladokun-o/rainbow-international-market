@@ -24,8 +24,11 @@ export const SOCIAL_LINKS = {
   facebook: ''
 } as const;
 
-// Default social-share image (1200×630), composed from brand vectors + fonts.
-export const SITE_OG_IMAGE = '/og/og-default.png';
+// Default social-share card (1200×630), from the client brand banner.
+// `og-with-features.jpg` is the full banner including the feature strip
+// (which mentions delivery — a service we don't offer), so the trimmed
+// `og-default.jpg` is the one wired here.
+export const SITE_OG_IMAGE = '/og/og-default.jpg';
 
 // Public contact inbox. TODO: confirm the exact mailbox with the client
 // (using the confirmed myrainbowmarket.com domain).
