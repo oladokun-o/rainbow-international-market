@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex" />
+    <title>%sveltekit.status% — Rainbow International Market</title>
+    <style>
+      :root { color-scheme: light; }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        min-height: 100vh;
+        display: grid;
+        place-items: center;
+        padding: 2rem;
+        background: #fbf7ef;
+        color: #054e32;
+        font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        text-align: center;
+      }
+      .card { max-width: 26rem; }
+      .status { margin: 0; font-size: clamp(3.5rem, 14vw, 5rem); font-weight: 700; color: #f15a24; line-height: 1; }
+      .rule { display: block; width: 4rem; height: 4px; margin: 1rem auto 0; border-radius: 999px; background: #fbbf17; }
+      h1 { margin: 1.5rem 0 0.5rem; font-size: 1.4rem; color: #006b3c; }
+      p { margin: 0 0 1.75rem; font-size: 0.95rem; line-height: 1.6; color: rgba(5, 78, 50, 0.7); }
+      a {
+        display: inline-block; padding: 0.7rem 1.4rem; border-radius: 0.5rem;
+        background: #f15a24; color: #fff; text-decoration: none; font-weight: 600; font-size: 0.9rem;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="card">
+      <p class="status">%sveltekit.status%</p>
+      <span class="rule"></span>
+      <h1>Something went wrong</h1>
+      <p>%sveltekit.error.message%</p>
+      <a href="/">Back to Rainbow International Market</a>
+    </main>
+  </body>
+</html>
