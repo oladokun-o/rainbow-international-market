@@ -53,13 +53,16 @@
   let accordionOpen = $state<string[]>(['a']);
 </script>
 
-<Header nav={navSnippet} location="San Angelo" />
-
 {#snippet navSnippet()}
   {#each MARKETING_NAV as link (link.href)}
     <a href={link.href} class="type-caption font-semibold text-deep hover:text-green">{link.label}</a>
   {/each}
 {/snippet}
+
+<!-- This scratch route sits outside the (app) layout, so it needs its own
+     page shell (background + text color) rather than inheriting one. -->
+<div class="min-h-dvh bg-cream text-deep">
+<Header nav={navSnippet} location="San Angelo" />
 
 <Section>
   <h1 class="type-hero text-green">Kitchen sink</h1>
@@ -254,3 +257,4 @@
 <MotifBand />
 
 <Footer />
+</div>
