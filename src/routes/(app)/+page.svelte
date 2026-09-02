@@ -1,5 +1,6 @@
 <script lang="ts">
   import { goto } from '$app/navigation';
+  import { ArrowRight } from '@lucide/svelte';
   import Seo from '$lib/components/seo/Seo.svelte';
   import Section from '$lib/components/ui/Section.svelte';
   import Button from '$lib/components/ui/Button.svelte';
@@ -130,7 +131,10 @@
         class="group flex items-center justify-between rounded-surface border-2 border-deep/10 bg-white/40 px-5 py-6 transition-colors hover:border-green"
       >
         <span class="text-[16px] font-semibold text-deep">{category.label}</span>
-        <span class="font-display text-green transition-transform group-hover:translate-x-1">&rarr;</span>
+        <ArrowRight
+          size={18}
+          class="text-green transition-transform group-hover:translate-x-1"
+        />
       </a>
     {/each}
   </div>
