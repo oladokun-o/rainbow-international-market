@@ -124,7 +124,7 @@
       {/if}
 
       {#if product.type === 'prepared' && product.leadTimeNote}
-        <p class="mt-5 rounded-surface bg-amber/15 px-4 py-3 text-[14px] font-medium text-deep">
+        <p class="mt-5 rounded-surface bg-orange/15 px-4 py-3 text-[14px] font-medium text-deep">
           {product.leadTimeNote}
         </p>
       {/if}

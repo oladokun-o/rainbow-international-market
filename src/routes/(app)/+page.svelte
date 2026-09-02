@@ -56,7 +56,7 @@
 <Seo title="{SITE_NAME} — African, Caribbean & Asian groceries in San Angelo, TX" canonical="/" description={SITE_DESCRIPTION} />
 
 {#if promo?.enabled}
-  <div class="bg-amber px-6 py-2.5 text-center text-deep">
+  <div class="bg-orange px-6 py-2.5 text-center text-deep">
     <p class="type-caption font-semibold">
       {promo.headline}{#if promo.subtext}<span class="font-normal"> — {promo.subtext}</span>{/if}
     </p>
@@ -159,7 +159,7 @@
         <a class="underline" href="/contact">Contact us</a>
       </p>
       {#if settings != null && !settings.orderingEnabled}
-        <span class="mt-3 inline-block"><Badge tone="amber">Online ordering paused</Badge></span>
+        <span class="mt-3 inline-block"><Badge tone="orange">Online ordering paused</Badge></span>
       {/if}
     </div>
   </div>

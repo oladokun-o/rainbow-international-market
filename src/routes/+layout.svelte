@@ -1,12 +1,11 @@
 <script lang="ts">
   import '../app.css';
-  // Self-hosted variable font for body/UI text. The display font is currently
-  // the same stack (placeholder) pending the client's brand typeface.
-  import '@fontsource-variable/inter';
+  // Self-hosted brand fonts: Outfit (display) + DM Sans (body).
+  import '@fontsource-variable/outfit';
+  import '@fontsource-variable/dm-sans';
   import { onNavigate } from '$app/navigation';
   import { PreviewMode, QueryLoader, VisualEditing } from '@sanity/sveltekit';
   import { client } from '$lib/sanity/client';
-  import favicon from '$lib/assets/favicon.svg';
   import Toast from '$lib/components/ui/Toast.svelte';
   import type { LayoutProps } from './$types';
 
@@ -30,10 +29,6 @@
     });
   });
 </script>
-
-<svelte:head>
-  <link rel="icon" href={favicon} />
-</svelte:head>
 
 <PreviewMode enabled={previewEnabled}>
   <VisualEditing enabled={previewEnabled}>

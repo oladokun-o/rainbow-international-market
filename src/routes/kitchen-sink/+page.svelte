@@ -36,7 +36,7 @@
   const badgeTones = [
     'green',
     'deep',
-    'amber',
+    'orange',
     'outline',
     'success',
     'error',

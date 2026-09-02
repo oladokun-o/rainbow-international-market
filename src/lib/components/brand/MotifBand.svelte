@@ -6,7 +6,7 @@
    * decorative (`aria-hidden`) — never carries meaning on its own.
    *
    * Rainbow has no motif artwork yet, so this renders as a plain solid color
-   * band (a thin amber strip by default). The API is kept intact so later
+   * band (a thin orange strip by default). The API is kept intact so later
    * phases can drop in a real motif asset — restore the `background-image`
    * line once `static/brand/motif-*.svg` exists.
    */
@@ -15,7 +15,7 @@
     | 'green-outline'
     | 'deep-solid'
     | 'cream-solid'
-    | 'amber-solid';
+    | 'orange-solid';
 
   interface Props {
     motif?: Motif;
@@ -25,14 +25,14 @@
      * via the global `.motif-scroll` animation. Inert until a real motif
      * asset exists (there is nothing to scroll on a solid band). */
     animated?: boolean;
-    /** Band background color. Defaults to a translucent amber wash. */
+    /** Band background color. Defaults to a translucent orange wash. */
     background?: string;
     assetBase?: string;
     class?: string;
   }
 
   let {
-    motif = 'amber-solid',
+    motif = 'orange-solid',
     height = 56,
     background,
     class: className
@@ -42,7 +42,7 @@
 </script>
 
 <div
-  class={cn('w-full', background ? '' : 'bg-amber/20', className)}
+  class={cn('w-full', background ? '' : 'bg-orange/20', className)}
   {style}
   data-motif={motif}
   aria-hidden="true"

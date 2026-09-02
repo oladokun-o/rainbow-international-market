@@ -94,7 +94,7 @@
 />
 
 {#if promo?.enabled}
-  <div class="bg-amber px-6 py-2.5 text-center text-deep">
+  <div class="bg-orange px-6 py-2.5 text-center text-deep">
     <p class="type-caption font-semibold">
       {promo.headline}{#if promo.subtext}<span class="font-normal"> — {promo.subtext}</span>{/if}
     </p>
@@ -112,7 +112,7 @@
 
   {#if orderingPaused}
     <div class="mt-6">
-      <Badge tone="amber">Online ordering is paused</Badge>
+      <Badge tone="orange">Online ordering is paused</Badge>
       <span class="type-caption ml-2 text-deep/60">You can still browse — checkout is temporarily unavailable.</span>
     </div>
   {/if}

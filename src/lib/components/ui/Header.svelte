@@ -82,8 +82,8 @@
   <div class="relative mx-auto grid max-w-6xl grid-cols-3 lg:grid-cols-3 items-center gap-0">
     <!-- Column 1: hamburger on mobile, logo on desktop -->
     <div class="justify-self-start">
-      <Logo tone="green" height={28} href="/" imgClass="h-4 w-auto sm:hidden" />
-      <Logo tone="green" height={32} href="/" imgClass="hidden h-7 w-auto sm:block sm:h-8" />
+      <Logo variant="mark" height={28} href="/" class="sm:hidden" imgClass="h-7 w-auto" />
+      <Logo variant="wordmark" height={32} href="/" class="hidden sm:block" imgClass="h-7 w-auto sm:h-8" />
     </div>
 
     <!-- Column 2: nav on desktop (true center) -->

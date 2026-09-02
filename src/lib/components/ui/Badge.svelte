@@ -6,7 +6,7 @@
   type Tone =
     | 'green'
     | 'deep'
-    | 'amber'
+    | 'orange'
     | 'outline'
     | 'success'
     | 'error'
@@ -26,12 +26,12 @@
   const toneMap: Record<Tone, string> = {
     green: 'bg-green text-cream',
     deep: 'bg-deep text-cream',
-    amber: 'bg-amber text-deep',
+    orange: 'bg-orange text-deep',
     outline: 'bg-transparent border-2 border-deep text-deep',
     success: 'bg-green/10 text-green',
     error: 'bg-green/10 text-green',
-    warning: 'bg-amber/20 text-deep',
-    progress: 'bg-amber/10 text-amber'
+    warning: 'bg-orange/20 text-deep',
+    progress: 'bg-orange/10 text-orange'
   };
 
   const sizeMap: Record<Size, string> = {
