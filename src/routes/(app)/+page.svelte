@@ -93,9 +93,9 @@
       {/if}
     </div>
     <div
-      class="grid aspect-4/3 place-items-center overflow-hidden rounded-surface border-2 border-deep/10 bg-white/50 p-10"
+      class="grid aspect-4/3 place-items-center overflow-hidden rounded-surface border-2 border-deep/10 bg-white/50"
     >
-      <Logo variant="stacked" height={220} class="w-full max-w-[16rem]" imgClass="h-auto w-full" />
+      <img src="/images/hero.jpg" alt="Rainbow International Market storefront" class="h-full w-full object-cover" />
     </div>
   </div>
 </Section>
