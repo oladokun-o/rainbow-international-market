@@ -15,7 +15,7 @@
      * single-row capture bar whose surrounding copy already implies the
      * field's purpose) — same convention as Select's `ariaLabel`. */
     ariaLabel?: string;
-    type?: 'text' | 'email' | 'tel' | 'url' | 'search';
+    type?: 'text' | 'email' | 'tel' | 'url' | 'search' | 'password';
     name?: string;
     id?: string;
     value?: string;
