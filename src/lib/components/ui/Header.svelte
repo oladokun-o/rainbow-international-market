@@ -74,7 +74,7 @@
 
 <header
   class={cn(
-    'sticky top-0 z-20 bg-cream/90 px-6 py-4 backdrop-blur-sm transition-shadow duration-fast lg:px-12',
+    'sticky top-0 z-20 bg-cream/90 px-6 py-4 sm:py-2 backdrop-blur-sm transition-shadow duration-fast lg:px-12',
     scrolled && shadow ? 'shadow-sm' : '',
     className
   )}
@@ -83,7 +83,7 @@
     <!-- Column 1: hamburger on mobile, logo on desktop -->
     <div class="justify-self-start">
       <Logo variant="mark" height={28} href="/" class="sm:hidden" imgClass="h-7 w-auto" />
-      <Logo variant="wordmark" height={64} href="/" class="hidden sm:block" imgClass="h-7 w-auto sm:h-12" />
+      <Logo variant="wordmark" height={48} href="/" class="hidden sm:block" imgClass="h-7 w-auto sm:h-12" />
     </div>
 
     <!-- Column 2: nav on desktop (true center) -->
