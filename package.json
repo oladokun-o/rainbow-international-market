@@ -33,6 +33,7 @@
 		"@portabletext/svelte": "^4.0.0",
 		"@sanity/image-url": "^2.1.1",
 		"@sanity/sveltekit": "^2.1.0",
+		"@vercel/analytics": "^2.0.1",
 		"embla-carousel": "^8.6.0",
 		"embla-carousel-svelte": "^8.6.0",
 		"mongoose": "^8.24.4",
