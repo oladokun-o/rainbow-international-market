@@ -6,7 +6,7 @@
   import Button from '$lib/components/ui/Button.svelte';
   import Badge from '$lib/components/ui/Badge.svelte';
   import MenuItemCard from '$lib/components/ui/MenuItemCard.svelte';
-  import PhotoPlaceholder from '$lib/components/ui/PhotoPlaceholder.svelte';
+  import Logo from '$lib/components/brand/Logo.svelte';
   import { formatCents } from '$lib/utils';
   import { urlFor, firstLine } from '$lib/sanity';
   import type { Product } from '$lib/sanity';
@@ -68,10 +68,11 @@
 <Section tone="cream" class="!pb-10">
   <div class="grid items-center gap-10 lg:grid-cols-2">
     <div>
-      <p class="type-overline text-green">San Angelo, TX</p>
+      <p class="type-overline text-orange">San Angelo, TX</p>
       <h1 class="mt-3 text-4xl font-semibold leading-tight text-green sm:text-5xl">
         {settings?.storeName || SITE_NAME}
       </h1>
+      <span class="mt-4 block h-1 w-16 rounded-full bg-yellow"></span>
       <p class="type-body-lg mt-4 max-w-xl text-deep/75">
         African, Caribbean, Asian and international groceries — plus prepared dishes cooked to order.
         Reserve online and pay cash on pickup.
@@ -84,8 +85,10 @@
         <p class="type-caption mt-5 text-deep/60">{settings.announcement}</p>
       {/if}
     </div>
-    <div class="aspect-4/3 overflow-hidden rounded-surface">
-      <PhotoPlaceholder label="Store photo" class="size-full" />
+    <div
+      class="grid aspect-4/3 place-items-center overflow-hidden rounded-surface border-2 border-deep/10 bg-white/50 p-10"
+    >
+      <Logo variant="stacked" height={220} class="w-full max-w-[16rem]" imgClass="h-auto w-full" />
     </div>
   </div>
 </Section>
@@ -95,7 +98,7 @@
   <Section tone="white">
     <div class="flex items-end justify-between gap-4">
       <h2 class="text-2xl font-semibold text-deep sm:text-3xl">Featured</h2>
-      <a href="/shop" class="type-caption font-semibold text-green hover:underline">View all</a>
+      <a href="/shop" class="type-caption font-semibold text-orange hover:underline">View all</a>
     </div>
     <div class="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
       {#each featured as product (product._id)}
@@ -128,12 +131,12 @@
     {#each categoryLinks as category (category.slug)}
       <a
         href={`/shop?category=${category.slug}`}
-        class="group flex items-center justify-between rounded-surface border-2 border-deep/10 bg-white/40 px-5 py-6 transition-colors hover:border-green"
+        class="group flex items-center justify-between rounded-surface border-2 border-deep/10 bg-white/40 px-5 py-6 transition-colors hover:border-orange"
       >
         <span class="text-[16px] font-semibold text-deep">{category.label}</span>
         <ArrowRight
           size={18}
-          class="text-green transition-transform group-hover:translate-x-1"
+          class="text-orange transition-transform group-hover:translate-x-1"
         />
       </a>
     {/each}

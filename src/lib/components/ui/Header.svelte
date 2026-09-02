@@ -83,7 +83,7 @@
     <!-- Column 1: hamburger on mobile, logo on desktop -->
     <div class="justify-self-start">
       <Logo variant="mark" height={28} href="/" class="sm:hidden" imgClass="h-7 w-auto" />
-      <Logo variant="wordmark" height={32} href="/" class="hidden sm:block" imgClass="h-7 w-auto sm:h-8" />
+      <Logo variant="wordmark" height={64} href="/" class="hidden sm:block" imgClass="h-7 w-auto sm:h-12" />
     </div>
 
     <!-- Column 2: nav on desktop (true center) -->
