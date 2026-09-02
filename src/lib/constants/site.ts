@@ -24,10 +24,7 @@ export const SOCIAL_LINKS = {
   facebook: ''
 } as const;
 
-// Default social-share card (1200×630), from the client brand banner.
-// `og-with-features.jpg` is the full banner including the feature strip
-// (which mentions delivery — a service we don't offer), so the trimmed
-// `og-default.jpg` is the one wired here.
+// Default social-share card — the client brand banner, resized to 1200×630.
 export const SITE_OG_IMAGE = '/og/og-default.jpg';
 
 // Public contact inbox. TODO: confirm the exact mailbox with the client
