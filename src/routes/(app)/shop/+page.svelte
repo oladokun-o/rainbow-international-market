@@ -1,5 +1,4 @@
 <script lang="ts">
-  import { goto } from '$app/navigation';
   import { page } from '$app/state';
   import Seo from '$lib/components/seo/Seo.svelte';
   import Section from '$lib/components/ui/Section.svelte';
@@ -12,6 +11,8 @@
   import { cn, formatCents } from '$lib/utils';
   import { urlFor, firstLine } from '$lib/sanity';
   import type { Product } from '$lib/sanity';
+  import { cart } from '$lib/stores/cart.svelte';
+  import { toastStore } from '$lib/stores/toast.svelte';
   import { SITE_NAME } from '$lib/constants/site';
   import type { PageData } from './$types';
 
@@ -77,8 +78,9 @@
     }
   }
 
-  function openProduct(p: Product) {
-    if (p.slug) goto(`/shop/${p.slug}`);
+  function addToCart(p: Product) {
+    cart.add(p, 1);
+    toastStore.push(`${p.name} added to cart`, 'success');
   }
 
   function clearFilters() {
@@ -179,8 +181,9 @@
               imageAlt={product.name}
               tags={product.type === 'prepared' ? ['Made to order'] : []}
               soldOut={!isAvailable(product)}
-              actionLabel="View"
-              onAdd={() => openProduct(product)}
+              disabled={orderingPaused}
+              actionLabel="Add"
+              onAdd={() => addToCart(product)}
             />
           </a>
         {/each}

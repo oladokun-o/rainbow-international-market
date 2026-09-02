@@ -47,6 +47,14 @@
     soldOut = false,
     class: className
   }: Props = $props();
+
+  // The card is often wrapped in a link to the product page; keep an Add
+  // click from also triggering that navigation.
+  function handleAdd(event: MouseEvent) {
+    event.preventDefault();
+    event.stopPropagation();
+    onAdd?.();
+  }
 </script>
 
 {#if layout === 'row'}
@@ -85,7 +93,7 @@
         <div class="mt-2 flex items-center justify-between gap-3">
           <span class="text-[16px] font-display text-green">{price}</span>
           {#if onAdd}
-            <Button size="sm" disabled={disabled || soldOut} onclick={onAdd}>
+            <Button size="sm" disabled={disabled || soldOut} onclick={handleAdd}>
               {soldOut ? 'Sold out' : actionLabel}
             </Button>
           {/if}
