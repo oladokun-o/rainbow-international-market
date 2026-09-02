@@ -38,6 +38,9 @@
     class?: string;
     /** Extra nav links/content between the logo and the location chip. */
     nav?: Snippet;
+    /** When set, shows a cart link; the badge appears once `cartCount` > 0. */
+    cartHref?: string;
+    cartCount?: number;
   }
 
   let {
@@ -48,7 +51,9 @@
     shadow = true,
     scrolled = $bindable(false),
     class: className,
-    nav
+    nav,
+    cartHref,
+    cartCount = 0
   }: Props = $props();
 
   let mobileMenuOpen = $state(false);
@@ -105,6 +110,22 @@
       {/if}
       {#if orderHref}
         <Button size="sm" class="hidden md:inline-flex" href={orderHref}>Shop</Button>
+      {/if}
+      {#if cartHref}
+        <a
+          href={cartHref}
+          class="relative flex size-9 items-center justify-center rounded-full border-2 border-deep/20 text-deep transition-colors hover:border-deep"
+          aria-label={cartCount > 0 ? `Cart, ${cartCount} item${cartCount === 1 ? '' : 's'}` : 'Cart'}
+        >
+          <Icon name="cart" size={16} />
+          {#if cartCount > 0}
+            <span
+              class="absolute -right-1.5 -top-1.5 grid min-w-[1.1rem] place-items-center rounded-full bg-green px-1 text-[11px] font-bold text-cream"
+            >
+              {cartCount}
+            </span>
+          {/if}
+        </a>
       {/if}
       {#if nav}
         <Hamburger

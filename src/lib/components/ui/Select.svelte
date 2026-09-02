@@ -1,6 +1,7 @@
 <script lang="ts">
   import { cn } from '$lib/utils';
   import { dropdownMenu } from '$lib/motion';
+  import { ChevronDown } from '@lucide/svelte';
 
   interface Option {
     value: string;
@@ -200,22 +201,12 @@
     <span class={selectedLabel ? 'text-deep' : 'text-deep/40'}>
       {selectedLabel || placeholder}
     </span>
-    <svg
+    <ChevronDown
       class="size-4 shrink-0 text-deep/50 transition-transform duration-200 {open
         ? 'rotate-180'
         : ''}"
-      viewBox="0 0 20 20"
-      fill="none"
       aria-hidden="true"
-    >
-      <path
-        d="M6 8l4 4 4-4"
-        stroke="currentColor"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-      />
-    </svg>
+    />
   </button>
 
   {#if open}
