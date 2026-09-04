@@ -1,14 +1,14 @@
 <script lang="ts">
   // Storefront shell — every marketing/shop route gets the Header + Footer.
   // The Studio (/studio) and other top-level routes stay outside this group.
-  import type { Snippet } from 'svelte';
-  import Header from '$lib/components/ui/Header.svelte';
-  import Footer from '$lib/components/ui/Footer.svelte';
-  import BottomNav from '$lib/components/ui/BottomNav.svelte';
-  import MotifBand from '$lib/components/ui/MotifBand.svelte';
-  import { PRIMARY_LOCATION, MARKETING_NAV } from '$lib/constants/site';
-  import { cart } from '$lib/stores/cart.svelte';
-  import { favorites } from '$lib/stores/favorites.svelte';
+  import type { Snippet } from "svelte";
+  import Header from "$lib/components/ui/Header.svelte";
+  import Footer from "$lib/components/ui/Footer.svelte";
+  import BottomNav from "$lib/components/ui/BottomNav.svelte";
+  import MotifBand from "$lib/components/ui/MotifBand.svelte";
+  import { PRIMARY_LOCATION, MARKETING_NAV } from "$lib/constants/site";
+  import { cart } from "$lib/stores/cart.svelte";
+  import { favorites } from "$lib/stores/favorites.svelte";
 
   const { children }: { children: Snippet } = $props();
 </script>
@@ -32,7 +32,7 @@
       {/each}
     {/snippet}
   </Header>
-  <MotifBand />
+  <!-- <MotifBand /> -->
   {@render children()}
   <Footer />
   <BottomNav />
