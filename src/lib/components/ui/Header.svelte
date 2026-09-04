@@ -1,12 +1,12 @@
 <script lang="ts">
-  import type { Snippet } from 'svelte';
-  import { scale } from 'svelte/transition';
-  import { cn } from '$lib/utils';
-  import Logo from '../brand/Logo.svelte';
-  import Button from './Button.svelte';
-  import Icon from './Icon.svelte';
-  import { ORDER_HREF } from '$lib/constants/site';
-  import Hamburger from './Hamburger.svelte';
+  import type { Snippet } from "svelte";
+  import { scale } from "svelte/transition";
+  import { cn } from "$lib/utils";
+  import Logo from "../brand/Logo.svelte";
+  import Button from "./Button.svelte";
+  import Icon from "./Icon.svelte";
+  import { ORDER_HREF } from "$lib/constants/site";
+  import Hamburger from "./Hamburger.svelte";
 
   /**
    * One site shell, reused by every page. Layout follows two distinct
@@ -58,7 +58,7 @@
     cartHref,
     cartCount = 0,
     favoritesHref,
-    favoritesCount = 0
+    favoritesCount = 0,
   }: Props = $props();
 
   let mobileMenuOpen = $state(false);
@@ -72,23 +72,37 @@
       scrolled = window.scrollY > 4;
     };
     onScroll();
-    window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
   });
 </script>
 
 <header
   class={cn(
-    'sticky top-0 z-20 bg-cream/90 px-6 py-4 sm:py-2 backdrop-blur-sm transition-shadow duration-fast lg:px-12',
-    scrolled && shadow ? 'shadow-sm' : '',
-    className
+    "sticky top-0 z-20 bg-cream/90 px-6 py-4 sm:py-2 backdrop-blur-sm transition-shadow duration-fast lg:px-12",
+    scrolled && shadow ? "shadow-sm" : "",
+    className,
   )}
 >
-  <div class="relative mx-auto grid max-w-6xl grid-cols-3 lg:grid-cols-3 items-center gap-0">
+  <div
+    class="relative mx-auto grid max-w-6xl grid-cols-3 lg:grid-cols-3 items-center gap-0"
+  >
     <!-- Column 1: hamburger on mobile, logo on desktop -->
     <div class="justify-self-start">
-      <Logo variant="mark" height={28} href="/" class="sm:hidden" imgClass="h-7 w-auto" />
-      <Logo variant="wordmark" height={48} href="/" class="hidden sm:block" imgClass="h-7 w-auto sm:h-12" />
+      <Logo
+        variant="mark"
+        height={28}
+        href="/"
+        class="sm:hidden"
+        imgClass="h-7 w-auto"
+      />
+      <Logo
+        variant="wordmark"
+        height={48}
+        href="/"
+        class="hidden sm:block"
+        imgClass="h-7 w-auto sm:h-12"
+      />
     </div>
 
     <!-- Column 2: nav on desktop (true center) -->
@@ -101,8 +115,10 @@
     </div>
 
     <!-- Column 3: location chip (desktop only) + CTA, always right-aligned -->
-    <div class="flex items-center justify-self-end gap-2 sm:gap-3 col-span-2 sm:col-span-1">
-      {#if location}
+    <div
+      class="flex items-center justify-self-end gap-2 sm:gap-3 col-span-2 sm:col-span-1"
+    >
+      <!-- {#if location}
         <button
           type="button"
           onclick={onLocationClick}
@@ -112,17 +128,19 @@
           {location}{#if locationClosed}<span class="hidden sm:inline"> · Closed</span>{/if}
           <Icon name="chevron-down" size={14} />
         </button>
-      {/if}
+      {/if} -->
       {#if orderHref}
-        <Button size="sm" class="hidden md:inline-flex" href={orderHref}>Shop</Button>
+        <Button size="sm" class="hidden md:inline-flex" href={orderHref}
+          >Shop</Button
+        >
       {/if}
       {#if favoritesHref}
         <a
           href={favoritesHref}
           class="relative flex size-9 items-center justify-center rounded-control border-2 border-deep/20 text-deep transition-colors hover:border-deep"
           aria-label={favoritesCount > 0
-            ? `Favorites, ${favoritesCount} item${favoritesCount === 1 ? '' : 's'}`
-            : 'Favorites'}
+            ? `Favorites, ${favoritesCount} item${favoritesCount === 1 ? "" : "s"}`
+            : "Favorites"}
         >
           <Icon name="heart" size={16} />
           {#if favoritesCount > 0}
@@ -138,7 +156,9 @@
         <a
           href={cartHref}
           class="relative flex size-9 items-center justify-center rounded-control border-2 border-deep/20 text-deep transition-colors hover:border-deep"
-          aria-label={cartCount > 0 ? `Cart, ${cartCount} item${cartCount === 1 ? '' : 's'}` : 'Cart'}
+          aria-label={cartCount > 0
+            ? `Cart, ${cartCount} item${cartCount === 1 ? "" : "s"}`
+            : "Cart"}
         >
           <Icon name="cart" size={16} />
           {#if cartCount > 0}
@@ -175,7 +195,11 @@
         {@render nav()}
       </div>
       {#if orderHref}
-        <Button href={orderHref} class="mt-8 w-full" onclick={() => (mobileMenuOpen = false)}>
+        <Button
+          href={orderHref}
+          class="mt-8 w-full"
+          onclick={() => (mobileMenuOpen = false)}
+        >
           Shop
         </Button>
       {/if}
