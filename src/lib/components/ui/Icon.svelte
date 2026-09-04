@@ -26,6 +26,8 @@
     | 'edit'
     | 'share'
     | 'directions'
+    | 'heart'
+    | 'home'
     | 'alert';
 </script>
 
@@ -57,6 +59,8 @@
     Pencil,
     Share2,
     Navigation,
+    Heart,
+    Home,
     TriangleAlert
   } from '@lucide/svelte';
 
@@ -97,6 +101,8 @@
     edit: Pencil,
     share: Share2,
     directions: Navigation,
+    heart: Heart,
+    home: Home,
     alert: TriangleAlert
   } satisfies Record<IconName, typeof ChevronDown>;
 

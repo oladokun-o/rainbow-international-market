@@ -41,6 +41,9 @@
     /** When set, shows a cart link; the badge appears once `cartCount` > 0. */
     cartHref?: string;
     cartCount?: number;
+    /** When set, shows a favorites link; the badge appears once `favoritesCount` > 0. */
+    favoritesHref?: string;
+    favoritesCount?: number;
   }
 
   let {
@@ -53,7 +56,9 @@
     class: className,
     nav,
     cartHref,
-    cartCount = 0
+    cartCount = 0,
+    favoritesHref,
+    favoritesCount = 0
   }: Props = $props();
 
   let mobileMenuOpen = $state(false);
@@ -110,6 +115,24 @@
       {/if}
       {#if orderHref}
         <Button size="sm" class="hidden md:inline-flex" href={orderHref}>Shop</Button>
+      {/if}
+      {#if favoritesHref}
+        <a
+          href={favoritesHref}
+          class="relative flex size-9 items-center justify-center rounded-control border-2 border-deep/20 text-deep transition-colors hover:border-deep"
+          aria-label={favoritesCount > 0
+            ? `Favorites, ${favoritesCount} item${favoritesCount === 1 ? '' : 's'}`
+            : 'Favorites'}
+        >
+          <Icon name="heart" size={16} />
+          {#if favoritesCount > 0}
+            <span
+              class="absolute -right-1.5 -top-1.5 grid min-w-[1.1rem] place-items-center rounded-full bg-green px-1 text-[11px] font-bold text-cream"
+            >
+              {favoritesCount}
+            </span>
+          {/if}
+        </a>
       {/if}
       {#if cartHref}
         <a

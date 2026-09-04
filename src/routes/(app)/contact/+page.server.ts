@@ -1,4 +1,4 @@
-import { stegaClean } from '@sanity/sveltekit';
+import { stegaClean } from '@sanity/sveltekit/client';
 import { siteSettingsQuery, type SiteSettings } from '$lib/sanity';
 import type { PageServerLoad } from './$types';
 

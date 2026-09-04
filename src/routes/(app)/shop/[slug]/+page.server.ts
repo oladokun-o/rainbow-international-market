@@ -1,7 +1,8 @@
 import { error } from '@sveltejs/kit';
-import { stegaClean } from '@sanity/sveltekit';
+import { stegaClean } from '@sanity/sveltekit/client';
 import {
   productBySlugQuery,
+  relatedProductsQuery,
   siteSettingsQuery,
   type Product,
   type SiteSettings
@@ -20,8 +21,16 @@ export const load: PageServerLoad = async ({ locals, params, setHeaders }) => {
   const resolved = stegaClean(product.data) as Product | null;
   if (!resolved) error(404, 'Product not found');
 
+  const related = resolved.categoryId
+    ? await loadQuery<Product[]>(relatedProductsQuery, {
+        id: resolved._id,
+        categoryId: resolved.categoryId
+      })
+    : null;
+
   return {
     product: resolved,
+    relatedProducts: related ? ((stegaClean(related.data) as Product[]) ?? []) : [],
     siteSettings: stegaClean(siteSettings.data) as SiteSettings | null
   };
 };

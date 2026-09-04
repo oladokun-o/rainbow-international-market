@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { Heart } from '@lucide/svelte';
   import { cn } from '$lib/utils';
   import Card from './Card.svelte';
   import Badge from './Badge.svelte';
@@ -28,6 +29,9 @@
     layout?: 'stack' | 'row';
     actionLabel?: string;
     onAdd?: () => void;
+    /** When passed, renders a heart toggle overlaid on the image. */
+    onFavorite?: () => void;
+    favorited?: boolean;
     disabled?: boolean;
     soldOut?: boolean;
     class?: string;
@@ -43,6 +47,8 @@
     layout = 'stack',
     actionLabel = 'Add',
     onAdd,
+    onFavorite,
+    favorited = false,
     disabled = false,
     soldOut = false,
     class: className
@@ -55,7 +61,27 @@
     event.stopPropagation();
     onAdd?.();
   }
+
+  function handleFavorite(event: MouseEvent) {
+    event.preventDefault();
+    event.stopPropagation();
+    onFavorite?.();
+  }
 </script>
+
+{#snippet favoriteButton()}
+  {#if onFavorite}
+    <button
+      type="button"
+      onclick={handleFavorite}
+      aria-pressed={favorited}
+      aria-label={favorited ? 'Remove from favorites' : 'Save to favorites'}
+      class="absolute right-2 top-2 z-10 grid size-8 place-items-center rounded-full bg-white/90 text-deep shadow-sm transition-transform hover:bg-white active:scale-95"
+    >
+      <Heart size={16} fill={favorited ? 'currentColor' : 'none'} class={favorited ? 'text-orange' : ''} />
+    </button>
+  {/if}
+{/snippet}
 
 {#if layout === 'row'}
   <Card
@@ -82,6 +108,7 @@
             {/each}
           </div>
         {/if}
+        {@render favoriteButton()}
       </div>
       <div class="flex min-w-0 flex-1 flex-col justify-between p-4 sm:py-4 sm:pr-4 sm:pl-0">
         <div class="min-w-0">
@@ -125,10 +152,11 @@
         </div>
       {/if}
       {#if soldOut}
-        <span class="animate-fade-up absolute top-2 right-2">
+        <span class={cn('animate-fade-up absolute right-2', onFavorite ? 'top-11' : 'top-2')}>
           <Badge tone="deep" size="sm">Sold out</Badge>
         </span>
       {/if}
+      {@render favoriteButton()}
     </div>
     <div class="flex flex-col py-2">
       <p class="text-[14px] font-semibold text-deep">{name}</p>

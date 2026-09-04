@@ -1,7 +1,8 @@
 // GROQ queries + their TS shapes, kept together.
 // The `groq` tag is re-exported by @sanity/sveltekit — never import the tag
-// package directly (Phase 0 anti-pattern).
-import { groq } from '@sanity/sveltekit';
+// package directly (Phase 0 anti-pattern). Deep-imported via the vite.config.ts
+// alias rather than the bare barrel — see the comment there.
+import { groq } from '@sanity/sveltekit/groq';
 
 // ── Shared shapes ────────────────────────────────────────────────────
 export interface SanityImageRef {
@@ -29,13 +30,16 @@ const productProjection = groq`
   price,
   compareAtPrice,
   unit,
+  origin,
+  brand,
   inStock,
   stockQty,
   lowStockThreshold,
   featured,
   leadTimeNote,
   sortOrder,
-  "category": category->{title, "slug": slug.current}
+  "category": category->{title, "slug": slug.current},
+  "categoryId": category._ref
 `;
 
 export const productsQuery = groq`*[_type == "product"] | order(sortOrder asc, name asc){${productProjection}}`;
@@ -43,6 +47,12 @@ export const productsQuery = groq`*[_type == "product"] | order(sortOrder asc, n
 export const productBySlugQuery = groq`*[_type == "product" && slug.current == $slug][0]{${productProjection}}`;
 
 export const featuredProductsQuery = groq`*[_type == "product" && featured == true] | order(sortOrder asc, name asc){${productProjection}}`;
+
+/** Products whose slug is in `$slugs` — used to re-validate saved favorites. */
+export const productsBySlugsQuery = groq`*[_type == "product" && slug.current in $slugs] | order(sortOrder asc, name asc){${productProjection}}`;
+
+/** Up to 4 other in-stock products in the same category, for "You might also like". */
+export const relatedProductsQuery = groq`*[_type == "product" && _id != $id && category._ref == $categoryId] | order(sortOrder asc, name asc)[0...4]{${productProjection}}`;
 
 export const lowStockProductsQuery = groq`*[_type == "product" && defined(stockQty) && stockQty <= lowStockThreshold] | order(stockQty asc){
   _id, name, "slug": slug.current, stockQty, lowStockThreshold, unit
@@ -60,6 +70,8 @@ export interface Product {
   /** Integer cents. */
   compareAtPrice?: number;
   unit?: string;
+  origin?: string;
+  brand?: string;
   inStock?: boolean;
   stockQty?: number;
   lowStockThreshold?: number;
@@ -67,6 +79,7 @@ export interface Product {
   leadTimeNote?: string;
   sortOrder?: number;
   category?: CategoryRef;
+  categoryId?: string;
 }
 
 export interface LowStockProduct {

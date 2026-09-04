@@ -1,4 +1,4 @@
-import { stegaClean } from '@sanity/sveltekit';
+import { stegaClean } from '@sanity/sveltekit/client';
 import {
   featuredProductsQuery,
   categoriesQuery,

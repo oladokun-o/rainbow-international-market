@@ -12,6 +12,7 @@
   import { urlFor, firstLine } from '$lib/sanity';
   import type { Product } from '$lib/sanity';
   import { cart } from '$lib/stores/cart.svelte';
+  import { favorites } from '$lib/stores/favorites.svelte';
   import { toastStore } from '$lib/stores/toast.svelte';
   import { SITE_NAME } from '$lib/constants/site';
   import type { PageData } from './$types';
@@ -80,7 +81,10 @@
 
   function addToCart(p: Product) {
     cart.add(p, 1);
-    toastStore.push(`${p.name} added to cart`, 'success');
+    toastStore.push(`${p.name} added to cart`, 'success', {
+      action: { label: 'View cart', href: '/cart' },
+      subtext: 'Pay cash on pickup in San Angelo'
+    });
   }
 
   function clearFilters() {
@@ -184,6 +188,8 @@
               disabled={orderingPaused}
               actionLabel="Add"
               onAdd={() => addToCart(product)}
+              favorited={favorites.has(product._id)}
+              onFavorite={() => favorites.toggle(product)}
             />
           </a>
         {/each}

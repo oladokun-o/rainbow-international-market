@@ -147,3 +147,5 @@ vite.config.ts.timestamp-*
 
 # SvelteKit build
 build/
+.vercel
+.env*

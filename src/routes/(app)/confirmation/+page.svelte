@@ -1,13 +1,29 @@
 <script lang="ts">
+  import { onMount } from 'svelte';
   import Section from '$lib/components/ui/Section.svelte';
   import Button from '$lib/components/ui/Button.svelte';
   import Seo from '$lib/components/seo/Seo.svelte';
   import { formatCents } from '$lib/utils';
   import { formatPickupDateLabel } from '$lib/pickup';
   import { SITE_NAME } from '$lib/constants/site';
+  import { saveOrder } from '$lib/stores/savedOrders';
   import type { PageData } from './$types';
 
   const { data }: { data: PageData } = $props();
+
+  // Drop the order into the device-local "my orders" cache so it shows up in
+  // /my-orders with no lookup — the customer never has to remember anything.
+  onMount(() => {
+    if (!data.order) return;
+    saveOrder({
+      orderRef: data.order.orderRef,
+      status: data.order.status,
+      pickupDate: data.order.pickupDate,
+      totalCents: data.order.totalCents,
+      itemCount: data.order.items.length,
+      createdAt: data.order.createdAt
+    });
+  });
 </script>
 
 <Seo noindex title="Order confirmed | {SITE_NAME}" canonical="/confirmation" />

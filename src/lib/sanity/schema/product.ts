@@ -71,6 +71,17 @@ export default defineType({
       type: 'string',
       description: 'e.g. "500g", "each", "6-pack"'
     }),
+    defineField({
+      name: 'origin',
+      title: 'Country / region of origin',
+      type: 'string',
+      description: 'e.g. "Nigeria", "West Africa", "Thailand"'
+    }),
+    defineField({
+      name: 'brand',
+      title: 'Brand',
+      type: 'string'
+    }),
     defineField({ name: 'inStock', title: 'In stock', type: 'boolean', initialValue: true }),
     defineField({
       name: 'stockQty',
