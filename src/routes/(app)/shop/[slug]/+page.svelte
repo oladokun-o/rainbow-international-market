@@ -1,21 +1,40 @@
 <script lang="ts">
   import { PortableText } from '@portabletext/svelte';
+  import { Heart } from '@lucide/svelte';
   import Seo from '$lib/components/seo/Seo.svelte';
   import Section from '$lib/components/ui/Section.svelte';
   import Breadcrumbs from '$lib/components/ui/Breadcrumbs.svelte';
   import Badge from '$lib/components/ui/Badge.svelte';
   import Button from '$lib/components/ui/Button.svelte';
+  import IconButton from '$lib/components/ui/IconButton.svelte';
   import QuantityStepper from '$lib/components/ui/QuantityStepper.svelte';
   import PhotoPlaceholder from '$lib/components/ui/PhotoPlaceholder.svelte';
   import { formatCents } from '$lib/utils';
   import { urlFor, firstLine } from '$lib/sanity';
   import { cart } from '$lib/stores/cart.svelte';
+  import { favorites } from '$lib/stores/favorites.svelte';
   import { toastStore } from '$lib/stores/toast.svelte';
   import { SITE_NAME } from '$lib/constants/site';
   import type { PageData } from './$types';
 
   const { data }: { data: PageData } = $props();
   const product = $derived(data.product);
+  const isFavorited = $derived(favorites.has(product._id));
+
+  async function shareProduct() {
+    const url = typeof location !== 'undefined' ? location.href : '';
+    const shareData = { title: product.name, text: `${product.name} — ${SITE_NAME}`, url };
+    try {
+      if (navigator.share) {
+        await navigator.share(shareData);
+        return;
+      }
+      await navigator.clipboard.writeText(url);
+      toastStore.push('Link copied', 'success');
+    } catch {
+      /* user dismissed the share sheet, or clipboard denied — no-op */
+    }
+  }
 
   const available = $derived(product.inStock !== false);
   const onSale = $derived(
@@ -67,7 +86,23 @@
 />
 
 <Section tone="cream" class="!py-10 sm:!py-12">
-  <Breadcrumbs items={crumbs} class="mb-8" />
+  <div class="mb-8 flex items-center justify-between gap-3">
+    <Breadcrumbs items={crumbs} />
+    <div class="flex shrink-0 items-center gap-1.5">
+      <IconButton icon="share" label="Share this product" variant="outline" onclick={shareProduct} />
+      <button
+        type="button"
+        onclick={() => favorites.toggle(product)}
+        aria-pressed={isFavorited}
+        aria-label={isFavorited ? 'Remove from favorites' : 'Save to favorites'}
+        class="grid size-9 shrink-0 place-items-center rounded-control border-2 transition-colors duration-normal {isFavorited
+          ? 'border-orange text-orange'
+          : 'border-deep/20 text-deep hover:border-deep'}"
+      >
+        <Heart size={16} fill={isFavorited ? 'currentColor' : 'none'} />
+      </button>
+    </div>
+  </div>
 
   <div class="grid gap-10 lg:grid-cols-2">
     <!-- Gallery -->
