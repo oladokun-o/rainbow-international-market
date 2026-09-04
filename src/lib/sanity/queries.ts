@@ -38,7 +38,8 @@ const productProjection = groq`
   featured,
   leadTimeNote,
   sortOrder,
-  "category": category->{title, "slug": slug.current}
+  "category": category->{title, "slug": slug.current},
+  "categoryId": category._ref
 `;
 
 export const productsQuery = groq`*[_type == "product"] | order(sortOrder asc, name asc){${productProjection}}`;
@@ -78,6 +79,7 @@ export interface Product {
   leadTimeNote?: string;
   sortOrder?: number;
   category?: CategoryRef;
+  categoryId?: string;
 }
 
 export interface LowStockProduct {
