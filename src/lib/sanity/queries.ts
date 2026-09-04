@@ -46,6 +46,12 @@ export const productBySlugQuery = groq`*[_type == "product" && slug.current == $
 
 export const featuredProductsQuery = groq`*[_type == "product" && featured == true] | order(sortOrder asc, name asc){${productProjection}}`;
 
+/** Products whose slug is in `$slugs` — used to re-validate saved favorites. */
+export const productsBySlugsQuery = groq`*[_type == "product" && slug.current in $slugs] | order(sortOrder asc, name asc){${productProjection}}`;
+
+/** Up to 4 other in-stock products in the same category, for "You might also like". */
+export const relatedProductsQuery = groq`*[_type == "product" && _id != $id && category._ref == $categoryId] | order(sortOrder asc, name asc)[0...4]{${productProjection}}`;
+
 export const lowStockProductsQuery = groq`*[_type == "product" && defined(stockQty) && stockQty <= lowStockThreshold] | order(stockQty asc){
   _id, name, "slug": slug.current, stockQty, lowStockThreshold, unit
 }`;

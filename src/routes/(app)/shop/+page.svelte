@@ -12,6 +12,7 @@
   import { urlFor, firstLine } from '$lib/sanity';
   import type { Product } from '$lib/sanity';
   import { cart } from '$lib/stores/cart.svelte';
+  import { favorites } from '$lib/stores/favorites.svelte';
   import { toastStore } from '$lib/stores/toast.svelte';
   import { SITE_NAME } from '$lib/constants/site';
   import type { PageData } from './$types';
@@ -184,6 +185,8 @@
               disabled={orderingPaused}
               actionLabel="Add"
               onAdd={() => addToCart(product)}
+              favorited={favorites.has(product._id)}
+              onFavorite={() => favorites.toggle(product)}
             />
           </a>
         {/each}

@@ -6,12 +6,19 @@
   import Footer from '$lib/components/ui/Footer.svelte';
   import { PRIMARY_LOCATION, MARKETING_NAV } from '$lib/constants/site';
   import { cart } from '$lib/stores/cart.svelte';
+  import { favorites } from '$lib/stores/favorites.svelte';
 
   const { children }: { children: Snippet } = $props();
 </script>
 
 <div class="flex min-h-dvh flex-col bg-cream">
-  <Header location={PRIMARY_LOCATION.name} cartHref="/cart" cartCount={cart.count}>
+  <Header
+    location={PRIMARY_LOCATION.name}
+    cartHref="/cart"
+    cartCount={cart.count}
+    favoritesHref="/favorites"
+    favoritesCount={favorites.count}
+  >
     {#snippet nav()}
       {#each MARKETING_NAV as link (link.href)}
         <a

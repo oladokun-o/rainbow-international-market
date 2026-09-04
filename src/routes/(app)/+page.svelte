@@ -8,6 +8,7 @@
   import Badge from '$lib/components/ui/Badge.svelte';
   import MenuItemCard from '$lib/components/ui/MenuItemCard.svelte';
   import Logo from '$lib/components/brand/Logo.svelte';
+  import { favorites } from '$lib/stores/favorites.svelte';
   import { formatCents } from '$lib/utils';
   import { urlFor, firstLine } from '$lib/sanity';
   import type { Product } from '$lib/sanity';
@@ -124,6 +125,8 @@
             soldOut={product.inStock === false}
             actionLabel="View"
             onAdd={() => product.slug && goto(`/shop/${product.slug}`)}
+            favorited={favorites.has(product._id)}
+            onFavorite={() => favorites.toggle(product)}
           />
         </a>
       {/each}
