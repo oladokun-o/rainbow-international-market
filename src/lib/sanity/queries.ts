@@ -29,6 +29,8 @@ const productProjection = groq`
   price,
   compareAtPrice,
   unit,
+  origin,
+  brand,
   inStock,
   stockQty,
   lowStockThreshold,
@@ -60,6 +62,8 @@ export interface Product {
   /** Integer cents. */
   compareAtPrice?: number;
   unit?: string;
+  origin?: string;
+  brand?: string;
   inStock?: boolean;
   stockQty?: number;
   lowStockThreshold?: number;
