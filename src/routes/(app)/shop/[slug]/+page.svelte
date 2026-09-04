@@ -78,7 +78,10 @@
   function addToCart() {
     if (!available) return;
     cart.add(product, qty);
-    toastStore.push(`Added ${qty} × ${product.name} to cart`, 'success');
+    toastStore.push(`Added ${qty} × ${product.name} to cart`, 'success', {
+      action: { label: 'View cart', href: '/cart' },
+      subtext: 'Pay cash on pickup in San Angelo'
+    });
   }
 
   function relatedImage(p: Product): string | undefined {
@@ -93,7 +96,10 @@
 
   function addRelatedToCart(p: Product) {
     cart.add(p, 1);
-    toastStore.push(`${p.name} added to cart`, 'success');
+    toastStore.push(`${p.name} added to cart`, 'success', {
+      action: { label: 'View cart', href: '/cart' },
+      subtext: 'Pay cash on pickup in San Angelo'
+    });
   }
 
   // Sticky mobile add-to-cart bar: shown once the inline quantity card

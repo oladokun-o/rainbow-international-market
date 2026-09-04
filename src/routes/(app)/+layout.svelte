@@ -5,6 +5,7 @@
   import Header from '$lib/components/ui/Header.svelte';
   import Footer from '$lib/components/ui/Footer.svelte';
   import BottomNav from '$lib/components/ui/BottomNav.svelte';
+  import MotifBand from '$lib/components/ui/MotifBand.svelte';
   import { PRIMARY_LOCATION, MARKETING_NAV } from '$lib/constants/site';
   import { cart } from '$lib/stores/cart.svelte';
   import { favorites } from '$lib/stores/favorites.svelte';
@@ -31,6 +32,7 @@
       {/each}
     {/snippet}
   </Header>
+  <MotifBand />
   {@render children()}
   <Footer />
   <BottomNav />

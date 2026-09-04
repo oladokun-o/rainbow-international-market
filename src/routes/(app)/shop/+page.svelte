@@ -81,7 +81,10 @@
 
   function addToCart(p: Product) {
     cart.add(p, 1);
-    toastStore.push(`${p.name} added to cart`, 'success');
+    toastStore.push(`${p.name} added to cart`, 'success', {
+      action: { label: 'View cart', href: '/cart' },
+      subtext: 'Pay cash on pickup in San Angelo'
+    });
   }
 
   function clearFilters() {
