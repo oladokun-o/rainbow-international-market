@@ -1,5 +1,5 @@
 import { error } from '@sveltejs/kit';
-import { stegaClean } from '@sanity/sveltekit';
+import { stegaClean } from '@sanity/sveltekit/client';
 import {
   productBySlugQuery,
   siteSettingsQuery,

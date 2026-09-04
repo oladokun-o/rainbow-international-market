@@ -1,5 +1,5 @@
 import { error, json } from '@sveltejs/kit';
-import { stegaClean } from '@sanity/sveltekit';
+import { stegaClean } from '@sanity/sveltekit/client';
 import { serverClient } from '$lib/sanity/client.server';
 import { siteSettingsQuery, type SiteSettings } from '$lib/sanity';
 import { connectDB } from '$lib/server/db';

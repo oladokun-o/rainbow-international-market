@@ -4,6 +4,9 @@ import tailwindcss from '@tailwindcss/vite';
 
 // The .env file lives inside app/ (alongside this config). We deliberately do
 // not set `envDir` — env files are colocated with the SvelteKit app.
+// (The @sanity/sveltekit deep-import aliases live in svelte.config.js's
+// `kit.alias` instead of here, so svelte-check's TypeScript resolution stays
+// in sync with Vite's — see the comment there.)
 export default defineConfig({
   plugins: [tailwindcss(), sveltekit()],
   // Expose PUBLIC_* vars to `import.meta.env` as well as SvelteKit's `$env`,

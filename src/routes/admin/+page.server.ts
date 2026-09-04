@@ -1,4 +1,4 @@
-import { stegaClean } from '@sanity/sveltekit';
+import { stegaClean } from '@sanity/sveltekit/client';
 import { serverClient } from '$lib/sanity/client.server';
 import { lowStockProductsQuery, type LowStockProduct } from '$lib/sanity';
 import { connectDB } from '$lib/server/db';

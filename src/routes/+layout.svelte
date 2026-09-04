@@ -6,7 +6,12 @@
   import { onMount } from 'svelte';
   import { dev } from '$app/environment';
   import { onNavigate } from '$app/navigation';
-  import { PreviewMode, QueryLoader, VisualEditing } from '@sanity/sveltekit';
+  // Deep-imported instead of `from '@sanity/sveltekit'` — see the comment in
+  // $lib/sanity/client.ts. The barrel also re-exports SanityStudio, which
+  // pulls in the whole Studio bundle's global CSS on every route in dev.
+  import PreviewMode from '@sanity/sveltekit/preview';
+  import QueryLoader from '@sanity/sveltekit/query';
+  import VisualEditing from '@sanity/sveltekit/visual-editing';
   import { client } from '$lib/sanity/client';
   import Toast from '$lib/components/ui/Toast.svelte';
   import type { LayoutProps } from './$types';

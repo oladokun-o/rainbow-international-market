@@ -1,7 +1,8 @@
 // GROQ queries + their TS shapes, kept together.
 // The `groq` tag is re-exported by @sanity/sveltekit — never import the tag
-// package directly (Phase 0 anti-pattern).
-import { groq } from '@sanity/sveltekit';
+// package directly (Phase 0 anti-pattern). Deep-imported via the vite.config.ts
+// alias rather than the bare barrel — see the comment there.
+import { groq } from '@sanity/sveltekit/groq';
 
 // ── Shared shapes ────────────────────────────────────────────────────
 export interface SanityImageRef {

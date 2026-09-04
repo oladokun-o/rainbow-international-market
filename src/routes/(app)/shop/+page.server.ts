@@ -5,7 +5,7 @@
 // { initial } }` shape: the shop grid does not need live preview / visual
 // editing, and resolved data keeps the page component simple. Switch to the
 // query-loader shape here if in-context editing of the grid is ever needed.
-import { stegaClean } from '@sanity/sveltekit';
+import { stegaClean } from '@sanity/sveltekit/client';
 import {
   productsQuery,
   categoriesQuery,
