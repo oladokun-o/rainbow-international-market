@@ -31,6 +31,41 @@
     return () => document.removeEventListener('visibilitychange', onVisible);
   });
 
+  // Slide the bar off-screen while the user is actively scrolling down (more
+  // page to read), bring it back on the way up or once they're back near the
+  // top — same pattern as most native app tab bars. A small threshold on
+  // both the scroll distance and the near-top zone keeps it from flickering
+  // on tiny rubber-band bounces.
+  let scrollHidden = $state(false);
+
+  onMount(() => {
+    let lastY = window.scrollY;
+    let ticking = false;
+
+    function update() {
+      const y = window.scrollY;
+      const delta = y - lastY;
+      if (y <= 16) {
+        scrollHidden = false;
+      } else if (delta > 8) {
+        scrollHidden = true;
+      } else if (delta < -8) {
+        scrollHidden = false;
+      }
+      lastY = y;
+      ticking = false;
+    }
+
+    function onScroll() {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(update);
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  });
+
   const isCurrent = (href: string) =>
     href === '/' ? page.url.pathname === '/' : page.url.pathname.startsWith(href);
 
@@ -41,8 +76,12 @@
 
 <nav
   hidden={onProductPage}
+  inert={scrollHidden}
   aria-label="Primary"
-  class="fixed inset-x-0 bottom-0 z-20 border-t-2 border-deep/10 bg-cream/95 backdrop-blur-sm sm:hidden"
+  class={cn(
+    'fixed inset-x-0 bottom-0 z-20 border-t-2 border-deep/10 bg-cream/95 backdrop-blur-sm transition-transform duration-normal sm:hidden',
+    scrollHidden && 'translate-y-full'
+  )}
   style="padding-bottom: env(safe-area-inset-bottom)"
 >
   <ul class="mx-auto grid max-w-lg grid-cols-4">
